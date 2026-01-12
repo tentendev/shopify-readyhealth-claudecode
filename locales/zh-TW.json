@@ -1,0 +1,137 @@
+{
+  "general": {
+    "meta": {
+      "page": "第 {{ page }} 頁"
+    },
+    "breadcrumbs": {
+      "home": "首頁"
+    },
+    "404": {
+      "title": "找不到頁面",
+      "subtext": "您請求的頁面不存在。"
+    },
+    "search": {
+      "placeholder": "搜尋",
+      "submit": "搜尋",
+      "results_for": "「{{ terms }}」的搜尋結果",
+      "no_results": "找不到「{{ terms }}」的相關結果"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "跳至內容",
+    "close": "關閉",
+    "menu": "選單",
+    "loading": "載入中...",
+    "next_slide": "下一張投影片",
+    "previous_slide": "上一張投影片",
+    "slider_position": "{{ current }} / {{ total }}"
+  },
+  "header": {
+    "menu": "選單",
+    "cart": "購物車",
+    "account": "帳戶",
+    "search": "搜尋"
+  },
+  "footer": {
+    "title": "頁尾",
+    "about_us": "關於我們",
+    "our_advantages": "我們的優勢",
+    "gene_testing": "基因檢測技術",
+    "customer_service": "顧客服務",
+    "privacy_policy": "個資宣告",
+    "shipping_policy": "運送政策",
+    "refund_policy": "退換貨政策",
+    "faq": "常見問答",
+    "contact_us": "聯絡我們",
+    "copyright": "© {{ year }} 世登健康生技股份有限公司 版權所有"
+  },
+  "newsletter": {
+    "label": "電子郵件",
+    "success": "感謝您的訂閱",
+    "button_label": "訂閱"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "加入購物車",
+      "buy_now": "立即購買",
+      "sold_out": "已售完",
+      "unavailable": "無法購買",
+      "price": {
+        "from_price_html": "{{ price }} 起",
+        "regular_price": "原價",
+        "sale_price": "特價"
+      },
+      "quantity": {
+        "label": "數量",
+        "increase": "增加 {{ product }} 的數量",
+        "decrease": "減少 {{ product }} 的數量"
+      },
+      "variant_sold_out_or_unavailable": "此款式已售完或無法購買"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "購物車",
+      "empty": "您的購物車是空的",
+      "continue_shopping": "繼續購物",
+      "remove": "移除",
+      "note": "訂單備註",
+      "subtotal": "小計",
+      "checkout": "結帳",
+      "taxes_and_shipping_at_checkout": "稅金與運費將於結帳時計算",
+      "taxes_included_but_shipping_at_checkout": "已含稅金。運費將於結帳時計算。"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "帳戶",
+      "details": "帳戶詳情",
+      "view_addresses": "查看地址",
+      "return": "返回帳戶詳情"
+    },
+    "login": {
+      "title": "登入",
+      "email": "電子郵件",
+      "password": "密碼",
+      "forgot_password": "忘記密碼？",
+      "sign_in": "登入",
+      "guest_title": "以訪客身份繼續",
+      "guest_continue": "繼續"
+    },
+    "register": {
+      "title": "建立帳戶",
+      "first_name": "名字",
+      "last_name": "姓氏",
+      "email": "電子郵件",
+      "password": "密碼",
+      "submit": "建立"
+    },
+    "addresses": {
+      "title": "地址",
+      "add_new": "新增地址",
+      "edit_address": "編輯地址",
+      "default": "預設"
+    },
+    "orders": {
+      "title": "訂單紀錄",
+      "order_number": "訂單編號",
+      "date": "日期",
+      "payment_status": "付款狀態",
+      "fulfillment_status": "出貨狀態",
+      "total": "總計"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "姓名",
+      "email": "電子郵件",
+      "phone": "電話號碼",
+      "message": "留言",
+      "send": "送出",
+      "post_success": "感謝您的來信，我們將盡快回覆您。"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%Y年%m月%d日"
+  }
+}

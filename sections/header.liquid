@@ -1,0 +1,115 @@
+{% comment %}
+  Header Section
+  Converted from Webflow nav structure
+{% endcomment %}
+
+<div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nav_wrap w-nav">
+  <div class="nav_contain u-container">
+    <a href="{{ routes.root_url }}" aria-current="{% if request.page_type == 'index' %}page{% endif %}" class="nav_logo w-nav-brand{% if request.page_type == 'index' %} w--current{% endif %}">
+      <div class="nav_logo_bg u-cover-absolute"></div>
+      <div data-wf--logo--variant="base" class="logo_wrap u-max-width-full">
+        {%- if section.settings.logo != blank -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 220 }}"
+            alt="{{ shop.name }}"
+            class="logo_colored"
+            loading="lazy"
+            width="220"
+            height="24"
+          >
+        {%- else -%}
+          <img src="{{ 'logo_zh.svg' | asset_url }}" loading="lazy" alt="{{ shop.name }}" class="logo_colored">
+        {%- endif -%}
+      </div>
+    </a>
+    <div class="nav_right">
+      <div class="nav_right_bg u-cover-absolute"></div>
+      <nav role="navigation" class="nav_menu_list w-nav-menu">
+        {%- for link in section.settings.menu.links -%}
+          <a
+            href="{{ link.url }}"
+            class="menu_link u-text-style-small w-nav-link{% if link.active %} w--current{% endif %}"
+          >
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+
+        {%- if section.settings.show_cart -%}
+          <a href="{{ routes.cart_url }}" class="menu_link u-text-style-small w-nav-link">
+            {{ 'header.cart' | t }} ({{ cart.item_count }})
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.cta_text != blank -%}
+          <div data-wf--button-main--variant="primary" class="button_main_wrap u-display-block-medium" data-button=" " data-trigger="hover focus">
+            <div class="clickable_wrap u-cover-absolute">
+              <a href="{{ section.settings.cta_link }}" class="clickable_link w-inline-block">
+                <span class="clickable_text u-sr-only">{{ section.settings.cta_text }}</span>
+              </a>
+            </div>
+            <div class="button_main_element">
+              <div aria-hidden="true" class="button_main_text u-text-style-small">{{ section.settings.cta_text }}</div>
+              <div class="button_main_icon u-hide-if-empty"></div>
+              <div class="button_main_line"></div>
+            </div>
+          </div>
+        {%- endif -%}
+      </nav>
+      <div class="nav_menu_btn w-nav-button">
+        <div class="menu_icon_wrap">
+          <div class="menu_hamburger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+              <path d="M3 4.33301H13M3 7.99967H13M3 11.6663H13" class="u-path"></path>
+            </svg>
+          </div>
+          <div class="menu_close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 26 26" fill="none" aria-hidden="true" class="u-svg">
+              <path d="M2 2L24.6274 24.6274" class="u-path"></path>
+              <path d="M2 25L24.6274 2.37258" class="u-path"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart link",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Call to Action Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "立即選購"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    }
+  ]
+}
+{% endschema %}

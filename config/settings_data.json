@@ -1,0 +1,30 @@
+{
+  "current": {
+    "color_primary": "#00973a",
+    "color_secondary": "#222f30",
+    "color_background": "#ffffff",
+    "color_background_secondary": "#f7f4ed",
+    "color_background_tertiary": "#dee9c0",
+    "color_text": "#222f30",
+    "color_text_light": "#4a595b",
+    "type_body_size": 16,
+    "cart_type": "drawer",
+    "cart_notes_enable": true,
+    "contact_email": "service@sdhealth.tw",
+    "contact_phone": "0800-779-088",
+    "address_taipei": "台北市信義區東興路51-1號5樓",
+    "address_hsinchu": "新竹科學園區新竹縣竹北市生醫五路66號4樓（第二生技大樓）",
+    "company_tax_id": "60663013",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

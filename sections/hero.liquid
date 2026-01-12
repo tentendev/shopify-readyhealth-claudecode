@@ -1,0 +1,87 @@
+{% comment %}
+  Hero Section
+  Placeholder section for hero content
+{% endcomment %}
+
+<section class="hero_section u-section u-theme-dark">
+  <div class="hero_contain u-container">
+    <div class="hero_content">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="hero_heading u-text-style-display">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="hero_subheading u-text-style-large">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank -%}
+        <div data-wf--button-main--variant="primary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
+          <div class="clickable_wrap u-cover-absolute">
+            <a href="{{ section.settings.button_link }}" class="clickable_link w-inline-block">
+              <span class="clickable_text u-sr-only">{{ section.settings.button_text }}</span>
+            </a>
+          </div>
+          <div class="button_main_element">
+            <div aria-hidden="true" class="button_main_text u-text-style-small">{{ section.settings.button_text }}</div>
+            <div class="button_main_icon u-hide-if-empty"></div>
+            <div class="button_main_line"></div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.image != blank -%}
+      <div class="hero_image_wrap">
+        <img
+          src="{{ section.settings.image | image_url: width: 1920 }}"
+          alt="{{ section.settings.image.alt | default: section.settings.heading }}"
+          loading="eager"
+          class="hero_image"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "從基因檢測出發，以AI科技引領你專屬健康之路"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "台灣新世代精準健康第一領導品牌"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "立即選購"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
