@@ -1,0 +1,96 @@
+{% comment %}
+  Collection Section
+  Display products in a collection
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="title_wrap u-margin-bottom-6">
+      <h1 class="u-text-style-h1">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="u-text-style-main u-margin-top-2">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="product_grid u-grid-autofit">
+        {%- for product in collection.products -%}
+          <div data-trigger="hover focus" class="product_card">
+            <div class="product_tbn">
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  loading="lazy"
+                  alt="{{ product.title }}"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="{{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 500 }} 500w, {{ product.featured_image | image_url: width: 600 }} 600w"
+                  class="product_img u-cover"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'product_img u-cover' }}
+              {%- endif -%}
+            </div>
+            <div class="product_info_group">
+              <div class="product_info">
+                <h4 class="u-text-style-h4">{{ product.title }}</h4>
+                <div class="product_price_group">
+                  <div class="u-text-style-main u-weight-medium">{{ product.price | money }}</div>
+                  {%- if product.compare_at_price > product.price -%}
+                    <div class="u-text-style-small" style="text-decoration: line-through;">{{ product.compare_at_price | money }}</div>
+                  {%- endif -%}
+                </div>
+                <div class="button_main_wrap" data-button=" ">
+                  <div class="clickable_wrap u-cover-absolute">
+                    <a href="{{ product.url }}" class="clickable_link w-inline-block">
+                      <span class="clickable_text u-sr-only">查看詳情</span>
+                    </a>
+                  </div>
+                  <div class="button_main_element">
+                    <div aria-hidden="true" class="button_main_text u-text-style-small">查看詳情</div>
+                    <div class="button_main_icon"></div>
+                    <div class="button_main_line"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if collection.products.size > section.settings.products_per_page -%}
+        <div class="pagination u-margin-top-6 u-alignment-center">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="u-alignment-center">
+        <p class="u-text-style-large">{{ section.settings.empty_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty Collection Text",
+      "default": "此系列目前沒有產品"
+    }
+  ]
+}
+{% endschema %}

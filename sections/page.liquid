@@ -1,0 +1,24 @@
+{% comment %}
+  Page Section
+  Display static page content
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="page_content">
+      <h1 class="u-text-style-h1 u-margin-bottom-6">{{ page.title }}</h1>
+      <div class="u-rich-text w-richtext">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

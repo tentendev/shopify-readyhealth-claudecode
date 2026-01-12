@@ -1,0 +1,175 @@
+{% comment %}
+  Technology Slider Section
+  Certification badges and technology slides
+{% endcomment %}
+
+<div id="tech-slider" class="u-section u-theme-dark">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'Technology' }}</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="u-text-style-h1 u-margin-bottom-4">{{ section.settings.heading | default: '國際認證與領先技術' }}</h2>
+    </div>
+
+    <div data-wf--slider--variant="overflow-hidden" class="slider_wrap" data-slider="component">
+      <div class="u-embed-css w-embed">
+        <style>
+html .slider_list > :not(.u-display-contents, .w-dyn-list),
+.slider_list > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > *,
+.slider_list > .u-display-contents > .u-display-contents > *,
+.slider_list > .u-display-contents > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > .u-display-contents > .w-dyn-list > * > * > * {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count));
+}
+</style>
+      </div>
+      <div style="--lg: 3; --md: 2; --sm: 1; --xs: 1;" class="slider_offset">
+        <div data-autoplay="true" data-delay="4000" data-follow-finger="true" data-free-mode="false" data-mousewheel="true" data-slide-to-clicked="false" data-speed="600" class="slider_element swiper">
+          <div data-slot="" class="slider_list swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'tech_slide' -%}
+                  <div class="tech_slide" {{ block.shopify_attributes }}>
+                    <div class="tech_card">
+                      <div class="tech_image_wrap">
+                        {%- if block.settings.image != blank -%}
+                          <img
+                            src="{{ block.settings.image | image_url: width: 600 }}"
+                            loading="lazy"
+                            alt="{{ block.settings.title }}"
+                            sizes="(max-width: 600px) 100vw, 600px"
+                            srcset="{{ block.settings.image | image_url: width: 300 }} 300w, {{ block.settings.image | image_url: width: 500 }} 500w, {{ block.settings.image | image_url: width: 600 }} 600w"
+                            class="tech_image u-cover"
+                          >
+                        {%- else -%}
+                          <img src="{{ block.settings.image_filename | asset_url }}" loading="lazy" alt="{{ block.settings.title }}" class="tech_image u-cover">
+                        {%- endif -%}
+                      </div>
+                      <div class="tech_content">
+                        <h3 class="u-text-style-h3">{{ block.settings.title }}</h3>
+                        <p class="u-text-style-main">{{ block.settings.description }}</p>
+                      </div>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      <div class="slider_controls">
+        <div class="slider_bullet_list">
+          {%- for block in section.blocks -%}
+            <div class="slider_bullet_item{% if forloop.first %} is-active{% endif %}"></div>
+          {%- endfor -%}
+        </div>
+        <div class="slider_button_layout">
+          <div data-wf--button-arrow--variant="secondary-medium" data-slider="previous" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+            <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+              <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="left" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg w-variant-1c3f028b-116e-d4eb-db7f-8484491bbf2e">
+                  <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                </svg></div>
+            </div>
+            <div class="clickable_wrap u-cover-absolute">
+              <button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Previous</span></button>
+            </div>
+          </div>
+          <div data-wf--button-arrow--variant="secondary-medium" data-slider="next" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+            <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+              <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="right" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg">
+                  <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                </svg></div>
+            </div>
+            <div class="clickable_wrap u-cover-absolute">
+              <button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Next</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Technology Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Technology"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "國際認證與領先技術"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tech_slide",
+      "name": "Technology Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded",
+          "default": "tech-slide.webp"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "ISO 15189 認證"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "華聯生技實驗室通過國際認證"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technology Slider",
+      "blocks": [
+        {
+          "type": "tech_slide",
+          "settings": {
+            "title": "ISO 15189 認證",
+            "description": "華聯生技實驗室通過國際認證"
+          }
+        },
+        {
+          "type": "tech_slide",
+          "settings": {
+            "title": "Axiom™ 晶片技術",
+            "description": "採用全球領先的基因分型平台"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
