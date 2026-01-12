@@ -1,0 +1,175 @@
+{% comment %}
+  Tech Video & Slider Section
+  Vimeo video with technology certification slides
+{% endcomment %}
+
+<div id="tech" class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="tech_grid u-grid-autofit">
+      <div class="col_media">
+        <div class="video_wrapper">
+          <div data-thumbnail="{{ section.settings.video_thumbnail | image_url: width: 1280 | default: 'https://cdn.prod.website-files.com/6926cb005a176d9c9ecc65c9/6937f0b52fb60a950265395a_video_thumbnail.webp' }}" data-embed="{{ section.settings.vimeo_id | default: '1149141931' }}" class="vimeo">
+            <div class="play_button">
+              <div data-wf--button-play--variant="primary-medium" class="button_toggle_wrap" data-button=" " data-trigger="hover focus" data-state="pressed">
+                <div class="button_toggle_element">
+                  <div aria-hidden="true" class="button_toggle_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none" class="button_toggle_play u-cover-absolute">
+                      <path d="M12.6705 5.34693L12.5825 5.2936C11.5852 4.68693 10.7078 4.15226 9.95584 3.88293C9.54129 3.72361 9.09811 3.65232 8.6545 3.6736C8.18754 3.70924 7.7412 3.88073 7.3705 4.16693C6.5985 4.7456 6.26517 5.5976 6.0825 6.54027C5.90517 7.4536 5.83717 8.64293 5.75317 10.0909L5.74917 10.1656C5.6985 11.0323 5.6665 11.8896 5.6665 12.6669C5.6665 13.4443 5.6985 14.3029 5.74917 15.1696L5.75317 15.2429C5.83717 16.6909 5.90517 17.8803 6.0825 18.7923C6.26517 19.7363 6.5985 20.5869 7.3705 21.1669C7.75184 21.4536 8.17984 21.6243 8.6545 21.6603C9.1105 21.6936 9.54784 21.5976 9.95584 21.4509C10.7078 21.1816 11.5852 20.6469 12.5825 20.0416L12.6705 19.9883C13.2385 19.6416 13.7958 19.2856 14.2932 18.9349C14.9022 18.5016 15.4959 18.0471 16.0732 17.5723L16.1398 17.5176C17.1585 16.6869 18.0225 15.9816 18.6198 15.2883C19.2705 14.5283 19.6665 13.7123 19.6665 12.6669C19.6665 11.6216 19.2705 10.8043 18.6185 10.0456C18.0225 9.35227 17.1585 8.6456 16.1412 7.81627L16.0745 7.7616C15.4692 7.26827 14.8612 6.79626 14.2932 6.39893C13.7635 6.03084 13.2223 5.67956 12.6705 5.3456" fill="currentColor"></path>
+                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 898 1277" fill="none" class="button_toggle_pause u-cover-absolute">
+                      <rect x="577" width="321" height="1277" fill="currentColor"></rect>
+                      <rect width="321" height="1277" fill="currentColor"></rect>
+                    </svg></div>
+                </div>
+                <div class="clickable_wrap u-cover-absolute">
+                  <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Play</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Play</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col_content">
+        <div data-wf--slider--variant="overflow-hidden" class="slider_wrap" data-slider="component">
+          <div class="u-embed-css w-embed">
+            <style>
+html .slider_list > :not(.u-display-contents, .w-dyn-list),
+.slider_list > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > *,
+.slider_list > .u-display-contents > .u-display-contents > *,
+.slider_list > .u-display-contents > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > .u-display-contents > .w-dyn-list > * > * > * {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count));
+}
+</style>
+          </div>
+          <div style="--lg: 1; --md: 1; --sm: 1; --xs: 1;" class="slider_offset">
+            <div data-autoplay="false" data-follow-finger="true" data-free-mode="false" data-mousewheel="true" data-slide-to-clicked="false" data-speed="600" class="slider_element swiper w-variant-bfb8c45c-dbfa-13cc-2dfc-0c02a34504e4">
+              <div data-slot="" class="slider_list swiper-wrapper">
+                {%- for block in section.blocks -%}
+                  {%- case block.type -%}
+                    {%- when 'slide' -%}
+                      <div class="slider_card" {{ block.shopify_attributes }}>
+                        <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+                          <div class="u-eyebrow-layout">
+                            <div class="u-eyebrow-marker"></div>
+                            <div class="u-eyebrow-text u-text-style-main w-richtext">
+                              <p>{{ block.settings.eyebrow }}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <h2 class="u-text-style-h2 u-margin-bottom-4">{{ block.settings.heading }}</h2>
+                        <div class="u-rich-text w-richtext">
+                          {{ block.settings.content }}
+                        </div>
+                      </div>
+                  {%- endcase -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          <div class="slider_controls">
+            <div class="slider_bullet_list">
+              {%- for block in section.blocks -%}
+                <div class="slider_bullet_item{% if forloop.first %} is-active{% endif %}"></div>
+              {%- endfor -%}
+            </div>
+            <div class="slider_button_layout">
+              <div data-wf--button-arrow--variant="secondary-medium" data-slider="previous" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+                <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+                  <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="left" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg w-variant-1c3f028b-116e-d4eb-db7f-8484491bbf2e">
+                      <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                    </svg></div>
+                </div>
+                <div class="clickable_wrap u-cover-absolute">
+                  <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Previous</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Previous</span></button>
+                </div>
+              </div>
+              <div data-wf--button-arrow--variant="secondary-medium" data-slider="next" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+                <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+                  <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="right" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg">
+                      <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                    </svg></div>
+                </div>
+                <div class="clickable_wrap u-cover-absolute">
+                  <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Next</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Next</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Tech Video & Slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail",
+      "label": "Video Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "vimeo_id",
+      "label": "Vimeo Video ID",
+      "default": "1149141931"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Technology Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow Text",
+          "default": "Genetic Testing Technology"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading",
+          "default": "通過多項國際實驗室認證，打造最高標準的基因檢測品質"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>為確保每一份報告的精準度與可信度，實驗室遵循國際級品質管理與安全標準，通過：</p><ul><li>TAF 國際實驗室認證</li><li>ISO 17025 實驗室能力驗證</li><li>ISO 13485 醫療器材品質管理系統</li></ul>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tech Video & Slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Genetic Testing Technology",
+            "heading": "通過多項國際實驗室認證，打造最高標準的基因檢測品質",
+            "content": "<p>為確保每一份報告的精準度與可信度，實驗室遵循國際級品質管理與安全標準，通過：</p><ul><li>TAF 國際實驗室認證</li><li>ISO 17025 實驗室能力驗證</li><li>ISO 13485 醫療器材品質管理系統</li></ul>"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Genetic Testing Technology",
+            "heading": "亞洲唯一高密度基因晶片研發原廠｜READYGEN 檢測的科學後盾",
+            "content": "<p>Ready Gen 的 DNA 檢測，由台灣頂尖研發團隊華聯生物科技強力支持。華聯生技深耕台灣 20 年，由工研院扶植成立，專注於基因檢測平台的核心技術研發，涵蓋：</p><ul><li>高密度基因微陣列晶片（亞洲唯一原廠）</li><li>次世代定序（NGS）</li><li>平台基因數據演算與分析</li></ul>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

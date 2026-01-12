@@ -1,0 +1,191 @@
+{% comment %}
+  Comparison Table Section
+  AI vs Traditional Gene Testing
+{% endcomment %}
+
+<div id="advantage" class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'Our advantages' }}</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="u-text-style-h1">{{ section.settings.heading | default: '超越傳統基因檢測: AI智能引領你的健康生活' }}</h2>
+    </div>
+    <div class="compare_table_wrap">
+      <table class="compare_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <div class="u-text-style-h3">{{ section.settings.col1_header | default: 'AI 生活化基因檢測' }}</div>
+            </th>
+            <th>
+              <div class="u-text-style-h3">{{ section.settings.col2_header | default: '一般基因檢測' }}</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'row' -%}
+                <tr {{ block.shopify_attributes }}>
+                  <th>
+                    <div class="u-text-style-h6">{{ block.settings.row_label }}</div>
+                  </th>
+                  <td>
+                    <div class="table_item">
+                      <div class="compare_icon is-checked">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none">
+                          <path d="M2 9.626L3.606 11.348C4.492 12.298 4.935 12.772 5.431 12.922C5.867 13.053 6.331 13.018 6.746 12.822C7.219 12.598 7.598 12.061 8.358 10.986L14 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                      <div class="u-text-style-main">{{ block.settings.ai_value | replace: '[highlight]', '<span class="span_highlight">' | replace: '[/highlight]', '</span>' }}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table_item">
+                      <div class="compare_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+                          <path d="M5.73204 20.5C3.44204 20.5 2.00904 18.002 3.15104 16L9.41904 5.006C10.563 2.998 13.437 2.998 14.582 5.006L20.849 16C21.991 18.002 20.558 20.5 18.268 20.5H5.73204Z" stroke="currentColor" stroke-width="1.5"></path>
+                        </svg>
+                      </div>
+                      <div class="u-text-style-main">{{ block.settings.traditional_value }}</div>
+                    </div>
+                  </td>
+                </tr>
+            {%- endcase -%}
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Our advantages"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "超越傳統基因檢測: AI智能引領你的健康生活"
+    },
+    {
+      "type": "text",
+      "id": "col1_header",
+      "label": "Column 1 Header",
+      "default": "AI 生活化基因檢測"
+    },
+    {
+      "type": "text",
+      "id": "col2_header",
+      "label": "Column 2 Header",
+      "default": "一般基因檢測"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "row_label",
+          "label": "Row Label",
+          "default": "分析結果"
+        },
+        {
+          "type": "textarea",
+          "id": "ai_value",
+          "label": "AI Testing Value",
+          "info": "Use [highlight]text[/highlight] to highlight text",
+          "default": "以健康生活為主導的[highlight]深度分析[/highlight]"
+        },
+        {
+          "type": "textarea",
+          "id": "traditional_value",
+          "label": "Traditional Testing Value",
+          "default": "僅提供基因結果"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "分析結果",
+            "ai_value": "以健康生活為主導的[highlight]深度分析[/highlight]",
+            "traditional_value": "僅提供基因結果"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "分析類型",
+            "ai_value": "基因與健康行為的[highlight]雙軌分析[/highlight]（風險不只停在紅字）",
+            "traditional_value": "多為娛樂性或祖源分析為主"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "生活建議",
+            "ai_value": "[highlight]AI 個人化生活建議[/highlight]引擎（吃什麼、補什麼、怎麼睡都告訴你）",
+            "traditional_value": "只告訴你突變風險，沒有生活化可執行建議"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "智能提醒",
+            "ai_value": "情境化[highlight]智能提醒[/highlight]（天氣、過敏、應酬、作息全自動判斷）",
+            "traditional_value": "僅基本性格或簡單健康資訊"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "持續更新",
+            "ai_value": "持續更新後台數據與演算法，建立個人[highlight]化動態健康模型[/highlight]",
+            "traditional_value": "多為一次性報告，不會持續更新"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "日常整合",
+            "ai_value": "檢測報告APP持續更新、[highlight]每天的健康追蹤與提醒[/highlight]",
+            "traditional_value": "無法整合個人健檢或日常資料"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "生活指引",
+            "ai_value": "個人化[highlight]營養、運動及健康生活指引[/highlight]",
+            "traditional_value": "對生活健康改善的幫助有限"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

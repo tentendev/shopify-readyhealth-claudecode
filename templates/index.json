@@ -2,15 +2,363 @@
   "sections": {
     "hero": {
       "type": "hero",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "hero_slide01.webp"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "image_filename": "hero_slide02.webp"
+          }
+        }
+      },
+      "block_order": ["slide-1", "slide-2"],
       "settings": {}
     },
-    "featured-collection": {
-      "type": "featured-collection",
+    "about-us": {
+      "type": "about-us",
+      "blocks": {
+        "stat-1": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "base",
+            "icon": "precision",
+            "title": "99.9% 精準度",
+            "description": "臨床級基因定序分析"
+          }
+        },
+        "stat-2": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "sub-green",
+            "icon": "experience",
+            "title": "20 年+經驗",
+            "description": "基因學與精準醫療深耕累積"
+          }
+        },
+        "stat-3": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "brand",
+            "icon": "research",
+            "title": "376+ 研究文獻",
+            "description": "國際科學資料庫實證支持"
+          }
+        },
+        "stat-4": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "brand",
+            "icon": "tests",
+            "title": "120+項檢測",
+            "description": "全方位涵蓋健康、營養、代謝與健康風險指標"
+          }
+        },
+        "stat-5": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "base",
+            "icon": "ai",
+            "title": "AI×個人化健康",
+            "description": "個人化演算法打造專屬健康建議"
+          }
+        },
+        "stat-6": {
+          "type": "stat_card",
+          "settings": {
+            "variant": "sub-green",
+            "icon": "price",
+            "title": "最誠實的價格",
+            "description": "來自工研院技轉，科研成果回饋大眾，健康基因檢測CP值最高"
+          }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4", "stat-5", "stat-6"],
+      "settings": {}
+    },
+    "genes-and-you": {
+      "type": "genes-and-you",
+      "blocks": {
+        "topic-1": {
+          "type": "health_topic",
+          "settings": {
+            "title": "體重管理",
+            "description": "了解你的代謝特質，找到最適合的飲食策略",
+            "image_filename": "gene-weight.webp"
+          }
+        },
+        "topic-2": {
+          "type": "health_topic",
+          "settings": {
+            "title": "睡眠品質",
+            "description": "解鎖你的生理節律，優化睡眠效率",
+            "image_filename": "gene-sleep.webp"
+          }
+        },
+        "topic-3": {
+          "type": "health_topic",
+          "settings": {
+            "title": "心血管健康",
+            "description": "掌握你的心血管風險，提前預防保健",
+            "image_filename": "gene-cardio.webp"
+          }
+        },
+        "topic-4": {
+          "type": "health_topic",
+          "settings": {
+            "title": "髮膚健康",
+            "description": "認識你的膚質基因，量身打造護理方案",
+            "image_filename": "gene-hair.webp"
+          }
+        }
+      },
+      "block_order": ["topic-1", "topic-2", "topic-3", "topic-4"],
+      "settings": {}
+    },
+    "comparison-table": {
+      "type": "comparison-table",
+      "settings": {}
+    },
+    "tech-video": {
+      "type": "tech-video",
+      "settings": {}
+    },
+    "technology-slider": {
+      "type": "technology-slider",
+      "blocks": {
+        "slide-1": {
+          "type": "tech_slide",
+          "settings": {
+            "title": "ISO 15189 認證",
+            "description": "華聯生技實驗室通過國際認證",
+            "image_filename": "tech-iso.webp"
+          }
+        },
+        "slide-2": {
+          "type": "tech_slide",
+          "settings": {
+            "title": "Axiom™ 晶片技術",
+            "description": "採用全球領先的基因分型平台",
+            "image_filename": "tech-chip.webp"
+          }
+        }
+      },
+      "block_order": ["slide-1", "slide-2"],
+      "settings": {}
+    },
+    "ngs-comparison": {
+      "type": "ngs-comparison",
+      "settings": {}
+    },
+    "product-showcase": {
+      "type": "product-showcase",
+      "blocks": {
+        "item-1": {
+          "type": "package_item",
+          "settings": {
+            "title": "採檢套組",
+            "description": "專業設計的口腔採檢工具組",
+            "image_filename": "package-kit.webp"
+          }
+        },
+        "item-2": {
+          "type": "package_item",
+          "settings": {
+            "title": "操作說明",
+            "description": "清楚易懂的採檢流程圖示",
+            "image_filename": "package-guide.webp"
+          }
+        },
+        "item-3": {
+          "type": "package_item",
+          "settings": {
+            "title": "回寄信封",
+            "description": "預付郵資，輕鬆寄送樣本",
+            "image_filename": "package-envelope.webp"
+          }
+        }
+      },
+      "block_order": ["item-1", "item-2", "item-3"],
+      "settings": {}
+    },
+    "testing-process": {
+      "type": "testing-process",
+      "blocks": {
+        "step-1": {
+          "type": "process_step",
+          "settings": {
+            "step_number": "01",
+            "title": "居家採檢",
+            "description": "輕鬆完成口腔黏膜採樣，寄送回實驗室"
+          }
+        },
+        "step-2": {
+          "type": "process_step",
+          "settings": {
+            "step_number": "02",
+            "title": "基因分析",
+            "description": "專業實驗室進行 NGS 高通量定序"
+          }
+        },
+        "step-3": {
+          "type": "process_step",
+          "settings": {
+            "step_number": "03",
+            "title": "報告解讀",
+            "description": "AI 演算生成個人化健康報告與建議"
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"],
+      "settings": {}
+    },
+    "app-features": {
+      "type": "app-features",
+      "blocks": {
+        "tab-1": {
+          "type": "feature_tab",
+          "settings": {
+            "tab_label": "報告",
+            "title": "完整報告",
+            "description": "120+ 項基因檢測結果，清楚呈現您的健康密碼",
+            "image_filename": "app-report.webp"
+          }
+        },
+        "tab-2": {
+          "type": "feature_tab",
+          "settings": {
+            "tab_label": "日常",
+            "title": "日常追蹤",
+            "description": "記錄飲食、運動、睡眠，AI 給予個人化建議",
+            "image_filename": "app-daily.webp"
+          }
+        },
+        "tab-3": {
+          "type": "feature_tab",
+          "settings": {
+            "tab_label": "AI",
+            "title": "AI 健康顧問",
+            "description": "結合基因數據，智慧回答您的健康問題",
+            "image_filename": "app-ai.webp"
+          }
+        },
+        "tab-4": {
+          "type": "feature_tab",
+          "settings": {
+            "tab_label": "風格",
+            "title": "個人風格",
+            "description": "依據基因特質，推薦適合的生活方式",
+            "image_filename": "app-style.webp"
+          }
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3", "tab-4"],
+      "settings": {}
+    },
+    "user-feedback": {
+      "type": "user-feedback",
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "從 Ready 1 才發現自己乳糖耐受度差、葉酸需求高，也很驚訝口腔抹片能分析這麼多項目。若 APP 能針對異常數值提供更具體的飲食或補充建議，會更實用。",
+            "avatar_filename": "user13.webp",
+            "user_name": "Crystal／27歲／業務"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "一直以為自己只是意志力不夠，才會對甜食難以抗拒，沒想到報告直接指出甜食抵抗力不足。看到基因結果後，反而能更坦然面對並調整飲食。",
+            "avatar_filename": "user18.webp",
+            "user_name": "曾先生／41歲／資深產品經理"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "很高興終於有個報告告訴我，為什麼我吃再多也胖不起來。還有原來我的咖啡因代謝比一般人快很多，難怪喝咖啡沒什麼感覺。",
+            "avatar_filename": "user15.webp",
+            "user_name": "林小姐／32歲／設計師"
+          }
+        }
+      },
+      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"],
+      "settings": {}
+    },
+    "pricing-plans": {
+      "type": "pricing-plans",
+      "blocks": {
+        "product-1": {
+          "type": "product_card",
+          "settings": {
+            "image_filename": "single.webp",
+            "title": "全面基因檢測單人套組",
+            "price": "NT$8,800",
+            "button_text": "立即購買",
+            "link_target": "_blank"
+          }
+        },
+        "contact-1": {
+          "type": "contact_card",
+          "settings": {
+            "heading": "企業團購組請來信或加入LINE官方洽詢",
+            "image_filename": "plan-tbn.webp",
+            "line_text": "LINE官方帳號",
+            "line_link": "https://lin.ee/655Dz4v",
+            "email": "service@sdhealth.tw"
+          }
+        }
+      },
+      "block_order": ["product-1", "contact-1"],
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "口腔黏膜檢測結果準確嗎？",
+            "answer": "<p>口腔黏膜細胞與身體其他部位細胞，染色體皆相同。基因檢測品質高低與準確程度，極大程度上取決於樣品品質，因此，煩請依照產品說明書上的步驟正確的採樣。</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "感冒、生理期、生病能採樣嗎？",
+            "answer": "<p>若使用口腔噴劑或口腔內藥劑，建議康復後再進行採檢。生理期不受此限，可安心採檢。</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "基因檢測結果顯示為中高風險以上一定會生病嗎？",
+            "answer": "<p>根據現行研究，基因與疾病有一定程度上的關聯性，但非所有疾病。疾病的發生不只存在於基因變異，更多的影響在於飲食、生活..........等因素影響。</p>"
+          }
+        }
+      },
+      "block_order": ["faq-1", "faq-2", "faq-3"],
       "settings": {}
     }
   },
   "order": [
     "hero",
-    "featured-collection"
+    "about-us",
+    "genes-and-you",
+    "comparison-table",
+    "tech-video",
+    "technology-slider",
+    "ngs-comparison",
+    "product-showcase",
+    "testing-process",
+    "app-features",
+    "user-feedback",
+    "pricing-plans",
+    "faq"
   ]
 }

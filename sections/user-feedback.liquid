@@ -1,0 +1,188 @@
+{% comment %}
+  User Feedback Carousel Section
+  Testimonials slider with user reviews
+{% endcomment %}
+
+<div id="feedback" class="u-section">
+  <div data-wf--spacer--variant="large" class="u-section-spacer w-variant-8cc18b30-4618-8767-0111-f6abfe45aaa3 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap u-alignment-center">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'User Feedback' }}</p>
+          </div>
+        </div>
+      </div>
+      <div data-number="35" data-wf--typography-heading--variant="h1" class="u-text w-variant-792802b6-ccdb-f982-5023-5fa970cf03d0 w-richtext u-margin-bottom-0">
+        <h2>{{ section.settings.heading | default: '最真誠的回饋' }}</h2>
+      </div>
+    </div>
+    <div data-wf--slider--variant="overflow-hidden" class="slider_wrap" data-slider="component">
+      <div class="u-embed-css w-embed">
+        <style>
+html .slider_list > :not(.u-display-contents, .w-dyn-list),
+.slider_list > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > *,
+.slider_list > .u-display-contents > .u-display-contents > *,
+.slider_list > .u-display-contents > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > .u-display-contents > .w-dyn-list > * > * > * {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count));
+}
+</style>
+      </div>
+      <div style="--lg: 3; --md: 2; --sm: 1; --xs: 1;" class="slider_offset">
+        <div data-autoplay="false" data-follow-finger="true" data-free-mode="false" data-mousewheel="true" data-slide-to-clicked="false" data-speed="600" class="slider_element swiper w-variant-bfb8c45c-dbfa-13cc-2dfc-0c02a34504e4">
+          <div data-slot="" class="slider_list swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'testimonial' -%}
+                  <div class="feedback_card" {{ block.shopify_attributes }}>
+                    <div class="feedback_group">
+                      <div class="feedback_content">
+                        <div class="stars">
+                          {%- for i in (1..5) -%}
+                            <div class="icon_16"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none">
+                                <path d="M9.0067 2.0925C8.57203 1.3025 7.42803 1.3025 6.9927 2.0925C6.42022 3.13276 5.94831 4.22526 5.58337 5.35517C5.56615 5.39937 5.53588 5.43728 5.49657 5.46384C5.45727 5.49041 5.4108 5.50435 5.36337 5.50383C4.38534 5.52925 3.4105 5.6264 2.4467 5.7945C1.55537 5.94983 1.1627 7.01917 1.84003 7.68117C1.92537 7.76472 2.01159 7.84783 2.0987 7.9305C2.75124 8.54839 3.44217 9.12442 4.16737 9.65517C4.20031 9.67704 4.22527 9.70901 4.23849 9.74627C4.25172 9.78354 4.25249 9.82409 4.2407 9.86183C3.87459 10.9603 3.61299 12.0909 3.45937 13.2385C3.3327 14.1878 4.33803 14.7705 5.1227 14.3678C6.07528 13.8796 6.98613 13.3139 7.84603 12.6765C7.89107 12.6446 7.94487 12.6275 8.00003 12.6275C8.05519 12.6275 8.109 12.6446 8.15403 12.6765C9.01342 13.3147 9.92433 13.8804 10.8774 14.3678C11.662 14.7705 12.6674 14.1878 12.5407 13.2385C12.3873 12.0909 12.1259 10.9603 11.76 9.86183C11.7482 9.82409 11.749 9.78354 11.7622 9.74627C11.7755 9.70901 11.8004 9.67704 11.8334 9.65517C12.655 9.05376 13.4326 8.39429 14.16 7.68183C14.8374 7.01917 14.4447 5.94983 13.5534 5.7945C12.5893 5.62637 11.6143 5.52922 10.636 5.50383C10.5887 5.50422 10.5424 5.49021 10.5032 5.46365C10.464 5.4371 10.4339 5.39927 10.4167 5.35517C10.0529 4.22483 9.58028 3.13222 9.0067 2.0925Z" fill="currentColor"></path>
+                              </svg></div>
+                          {%- endfor -%}
+                        </div>
+                        <p class="u-text-style-main">{{ block.settings.review_text }}</p>
+                      </div>
+                      <div class="feedback_user">
+                        <div class="feedback_avatar">
+                          {%- if block.settings.avatar != blank -%}
+                            <img src="{{ block.settings.avatar | image_url: width: 100 }}" loading="lazy" alt="{{ block.settings.user_name }}" class="u-cover">
+                          {%- else -%}
+                            <img src="{{ block.settings.avatar_filename | asset_url }}" loading="lazy" alt="{{ block.settings.user_name }}" class="u-cover">
+                          {%- endif -%}
+                        </div>
+                        <div class="feedback_name u-text-style-main">{{ block.settings.user_name }}</div>
+                      </div>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      <div class="slider_controls">
+        <div class="slider_bullet_list">
+          {%- for block in section.blocks -%}
+            <div class="slider_bullet_item{% if forloop.first %} is-active{% endif %}"></div>
+          {%- endfor -%}
+        </div>
+        <div class="slider_button_layout">
+          <div data-wf--button-arrow--variant="secondary-medium" data-slider="previous" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+            <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+              <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="left" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg w-variant-1c3f028b-116e-d4eb-db7f-8484491bbf2e">
+                  <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                </svg></div>
+            </div>
+            <div class="clickable_wrap u-cover-absolute">
+              <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Previous</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Previous</span></button>
+            </div>
+          </div>
+          <div data-wf--button-arrow--variant="secondary-medium" data-slider="next" class="button_arrow_wrap" data-button=" " data-trigger="hover focus">
+            <div class="button_arrow_element w-variant-bb0688d1-65b6-14b6-81e5-21e2cd39bbda">
+              <div aria-hidden="true" class="button_arrow_icon"><svg data-wf--icon-arrow-full--variant="right" xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" aria-hidden="true" class="u-svg">
+                  <path d="M9.61467 3.65792C9.52396 3.56122 9.39855 3.50451 9.26603 3.50026C9.13351 3.49601 9.00472 3.54457 8.908 3.63526V7.49992H3C2.86739 7.49992 2.74021 7.5526 2.64645 7.64637C2.55268 7.74014 2.5 7.86732 2.5 7.99992C2.5 8.13253 2.55268 8.25971 2.64645 8.35348C2.74021 8.44724 2.86739 8.49992 3 8.49992H8.908V12.3646C9.00472 12.4553 9.13351 12.5038 9.26603 12.4996C9.39855 12.4953 9.52396 12.4386 9.61467 12.3419L13.3647 8.34192C13.4516 8.24925 13.4999 8.12697 13.4999 7.99992C13.4999 7.87288 13.4516 7.7506 13.3647 7.65792L9.61467 3.65792Z" fill="currentColor"></path>
+                </svg></div>
+            </div>
+            <div class="clickable_wrap u-cover-absolute">
+              <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Next</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Next</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="large" class="u-section-spacer w-variant-8cc18b30-4618-8767-0111-f6abfe45aaa3 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "User Feedback",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "User Feedback"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "最真誠的回饋"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "從 Ready 1 才發現自己乳糖耐受度差、葉酸需求高，也很驚訝口腔抹片能分析這麼多項目。若 APP 能針對異常數值提供更具體的飲食或補充建議，會更實用。"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "User Avatar"
+        },
+        {
+          "type": "text",
+          "id": "avatar_filename",
+          "label": "Avatar filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., user13.webp",
+          "default": "user13.webp"
+        },
+        {
+          "type": "text",
+          "id": "user_name",
+          "label": "User Name",
+          "default": "Crystal／27歲／業務"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "User Feedback",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "從 Ready 1 才發現自己乳糖耐受度差、葉酸需求高，也很驚訝口腔抹片能分析這麼多項目。若 APP 能針對異常數值提供更具體的飲食或補充建議，會更實用。",
+            "avatar_filename": "user13.webp",
+            "user_name": "Crystal／27歲／業務"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "一直以為自己只是意志力不夠，才會對甜食難以抗拒，沒想到報告直接指出甜食抵抗力不足。看到基因結果後，反而能更坦然面對並調整飲食。",
+            "avatar_filename": "user18.webp",
+            "user_name": "曾先生／41歲／資深產品經理"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "很高興終於有個報告告訴我，為什麼我吃再多也胖不起來。還有原來我的咖啡因代謝比一般人快很多，難怪喝咖啡沒什麼感覺。",
+            "avatar_filename": "user15.webp",
+            "user_name": "林小姐／32歲／設計師"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,173 @@
+{% comment %}
+  Testing Process Section
+  3-step testing process with video
+{% endcomment %}
+
+<div class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'Testing Process' }}</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="u-text-style-h1">{{ section.settings.heading | default: '檢驗流程' }}</h2>
+    </div>
+    <div class="process_group">
+      <div class="process_line"></div>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'step' -%}
+            <div class="process_item" {{ block.shopify_attributes }}>
+              <div data-wf--typography-eyebrow--variant="{{ block.settings.variant | default: 'base' }}" class="u-eyebrow-wrapper{% if block.settings.variant != 'base' %} w-variant-{{ block.settings.variant }}{% endif %}">
+                <div class="u-eyebrow-layout">
+                  <div class="u-eyebrow-marker{% if block.settings.variant != 'base' %} w-variant-{{ block.settings.variant }}{% endif %}"></div>
+                  <div class="u-eyebrow-text u-text-style-main w-richtext">
+                    <p>{{ block.settings.step_number }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="process_content">
+                <h3 class="u-text-style-h3">{{ block.settings.title }}</h3>
+                <p class="u-text-style-main">{{ block.settings.description }}</p>
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.show_video -%}
+      <div class="video_wrapper">
+        <div data-thumbnail="{{ section.settings.video_thumbnail | image_url: width: 1280 | default: 'https://cdn.prod.website-files.com/6926cb005a176d9c9ecc65c9/6948f8f30d81aecdfa8b93c0_process-demo.webp' }}" data-embed="{{ section.settings.vimeo_id | default: '1149141931' }}" class="vimeo">
+          <div class="play_button">
+            <div data-wf--button-play--variant="primary-medium" class="button_toggle_wrap" data-button=" " data-trigger="hover focus" data-state="pressed">
+              <div class="button_toggle_element">
+                <div aria-hidden="true" class="button_toggle_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none" class="button_toggle_play u-cover-absolute">
+                    <path d="M12.6705 5.34693L12.5825 5.2936C11.5852 4.68693 10.7078 4.15226 9.95584 3.88293C9.54129 3.72361 9.09811 3.65232 8.6545 3.6736C8.18754 3.70924 7.7412 3.88073 7.3705 4.16693C6.5985 4.7456 6.26517 5.5976 6.0825 6.54027C5.90517 7.4536 5.83717 8.64293 5.75317 10.0909L5.74917 10.1656C5.6985 11.0323 5.6665 11.8896 5.6665 12.6669C5.6665 13.4443 5.6985 14.3029 5.74917 15.1696L5.75317 15.2429C5.83717 16.6909 5.90517 17.8803 6.0825 18.7923C6.26517 19.7363 6.5985 20.5869 7.3705 21.1669C7.75184 21.4536 8.17984 21.6243 8.6545 21.6603C9.1105 21.6936 9.54784 21.5976 9.95584 21.4509C10.7078 21.1816 11.5852 20.6469 12.5825 20.0416L12.6705 19.9883C13.2385 19.6416 13.7958 19.2856 14.2932 18.9349C14.9022 18.5016 15.4959 18.0471 16.0732 17.5723L16.1398 17.5176C17.1585 16.6869 18.0225 15.9816 18.6198 15.2883C19.2705 14.5283 19.6665 13.7123 19.6665 12.6669C19.6665 11.6216 19.2705 10.8043 18.6185 10.0456C18.0225 9.35227 17.1585 8.6456 16.1412 7.81627L16.0745 7.7616C15.4692 7.26827 14.8612 6.79626 14.2932 6.39893C13.7635 6.03084 13.2223 5.67956 12.6705 5.3456" fill="currentColor"></path>
+                  </svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 898 1277" fill="none" class="button_toggle_pause u-cover-absolute">
+                    <rect x="577" width="321" height="1277" fill="currentColor"></rect>
+                    <rect width="321" height="1277" fill="currentColor"></rect>
+                  </svg></div>
+              </div>
+              <div class="clickable_wrap u-cover-absolute">
+                <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Play</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Play</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+  <div data-wf--spacer--variant="large" class="u-section-spacer w-variant-8cc18b30-4618-8767-0111-f6abfe45aaa3 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Testing Process",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Testing Process"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "檢驗流程"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video",
+      "label": "Show Video",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail",
+      "label": "Video Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "vimeo_id",
+      "label": "Vimeo Video ID",
+      "default": "1149141931"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "default": "01"
+        },
+        {
+          "type": "select",
+          "id": "variant",
+          "label": "Color Variant",
+          "options": [
+            { "value": "base", "label": "Default" },
+            { "value": "6a926144-a20f-c651-0218-8d3d54e7a8d3", "label": "Sub Green" },
+            { "value": "ae3b4f9c-8f85-7ddd-84b8-eadd6afd74d3", "label": "Brand" }
+          ],
+          "default": "base"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "訂購 · 取樣 · 寄回"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "於網上訂購 SDH 套裝，包裹免運費。完成簡單口腔黏膜細胞採集後，使用預付郵資標籤寄回樣本。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testing Process",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "variant": "base",
+            "title": "訂購 · 取樣 · 寄回",
+            "description": "於網上訂購 SDH 套裝，包裹免運費。完成簡單口腔黏膜細胞採集後，使用預付郵資標籤寄回樣本。"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "variant": "6a926144-a20f-c651-0218-8d3d54e7a8d3",
+            "title": "實驗室分析",
+            "description": "我們通過 ISO 認證的實驗室將提取您的 DNA 並進行NGS定序，這是目前最全面的檢測技術。"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "variant": "ae3b4f9c-8f85-7ddd-84b8-eadd6afd74d3",
+            "title": "獲取報告",
+            "description": "通過 READY 1 應用程式查看您的綜合報告。"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

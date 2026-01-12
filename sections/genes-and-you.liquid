@@ -1,0 +1,154 @@
+{% comment %}
+  Genes & You Section
+  Health topics with hover cards
+{% endcomment %}
+
+<div id="gene" class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'Genes & You' }}</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="u-text-style-h1">{{ section.settings.heading | default: '想真正了解自己的體質？從基因檢測開始' }}</h2>
+    </div>
+    <div class="features_grid u-grid-autofit">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'feature_card' -%}
+            <div class="feature_card u-theme-dark" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1280 }}"
+                  loading="lazy"
+                  alt="{{ block.settings.title }}"
+                  sizes="(max-width: 749px) 100vw, 50vw"
+                  srcset="{{ block.settings.image | image_url: width: 500 }} 500w,
+                          {{ block.settings.image | image_url: width: 800 }} 800w,
+                          {{ block.settings.image | image_url: width: 1080 }} 1080w,
+                          {{ block.settings.image | image_url: width: 1280 }} 1280w"
+                  class="feature_img u-cover-absolute"
+                >
+              {%- else -%}
+                <img src="{{ block.settings.image_url | default: 'weight.webp' | asset_url }}" loading="lazy" alt="{{ block.settings.title }}" class="feature_img u-cover-absolute">
+              {%- endif -%}
+              <div data-wf--media-overlay--variant="gradient" class="u-overlay w-variant-9653c0cc-21fc-fb82-1373-c98b1644e5a8 feature_overlay" data-number="20"></div>
+              <div class="feature_main_content">
+                <div class="u-text-style-h3">{{ block.settings.tag }}</div>
+                <h4 class="u-text-style-large">{{ block.settings.title }}</h4>
+              </div>
+              <div class="feature_hover_content">
+                <p class="u-text-style-main">{{ block.settings.description }}</p>
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Genes & You",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Genes & You"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "想真正了解自己的體質？從基因檢測開始"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., weight.webp"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "減重"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "別人運動兩週就瘦了，我跑了半年體重還在原地。是不是我跟別人本來就不一樣？"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Hover Description",
+          "default": "每個人天生都有不同版本的代謝基因：有人怎麼吃都不會胖，有人喝水都覺得會胖；有人運動一下就見效，有人再努力也毫無反應。與其懷疑自己，不如了解身體的天生設定。透過一次基因檢測，你就能知道自己的代謝速度、是否容易囤積脂肪，以及哪一種飲食或運動方式最適合你。減重不必再靠運氣或盲目嘗試，讓科學告訴你最省力、最有效的方式。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Genes & You",
+      "blocks": [
+        {
+          "type": "feature_card",
+          "settings": {
+            "image_url": "weight.webp",
+            "tag": "減重",
+            "title": "別人運動兩週就瘦了，我跑了半年體重還在原地。是不是我跟別人本來就不一樣？",
+            "description": "每個人天生都有不同版本的代謝基因：有人怎麼吃都不會胖，有人喝水都覺得會胖；有人運動一下就見效，有人再努力也毫無反應。與其懷疑自己，不如了解身體的天生設定。透過一次基因檢測，你就能知道自己的代謝速度、是否容易囤積脂肪，以及哪一種飲食或運動方式最適合你。減重不必再靠運氣或盲目嘗試，讓科學告訴你最省力、最有效的方式。"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "image_url": "sleep.webp",
+            "tag": "睡眠",
+            "title": "有人睡不著，不一定是想太多，而是「你的基因太敏感」",
+            "description": "有些人睡不著，不是因為想太多，而是因為「體內的基因太活躍」。像是ADORA2A 基因，負責調控大腦對咖啡因的敏感度，如果你的基因版本較敏感，下午一杯奶茶，都有可能讓你半夜腦袋仍維持在「超人模式」，很難入睡。一次基因檢測，你就能知道自己是不是天生容易失眠、半夜容易醒，或哪種助眠方式對你最有效。"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "image_url": "stroke.webp",
+            "tag": "心血管",
+            "title": "家裡有人中風，我也是高風險族群嗎？",
+            "description": "研究顯示，家中若有長輩曾經中風，自己未來的中風風險會比一般人高出 1.5～2 倍。這不是嚇人，而是提醒：有些人的血管天生比較「敏感」，在高壓、油炸食物、熬夜等生活習慣下更容易累積風險。透過一次基因檢測，你可以知道自己是否屬於需要更早注意飲食與作息的體質，提早看見自己的風險地圖。"
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "image_url": "hair.webp",
+            "tag": "脫髮",
+            "title": "脫髮越來越嚴重，我會跟我老爸一樣嗎？",
+            "description": "台灣門診觀察顯示，每 4 位男性就有 1 位受掉髮困擾，而女性也常出現髮量變細、髮縫變寬等問題。如果你也曾懷疑自己是不是遺傳到家族的髮量問題，一次基因檢測就能看出：你的身體對雄性激素的敏感度高不高。了解自己的「髮量設定」，再去調整作息與保養方式，往往比盲目換洗髮精更有效。"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

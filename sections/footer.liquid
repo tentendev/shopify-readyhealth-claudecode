@@ -1,131 +1,139 @@
 {% comment %}
   Footer Section
-  Converted from Webflow footer structure
+  Converted from Webflow footer structure with full content
 {% endcomment %}
 
 <footer class="footer_wrap u-background-4">
-  <h2 class="footer_title u-sr-only">{{ 'footer.title' | t }}</h2>
+  <h2 class="footer_title u-sr-only">Footer</h2>
   <div class="footer_contain u-container">
     <div data-medium-columns="1" class="footer_layout u-grid-custom">
       <div class="footer_content">
-        <a aria-label="{{ 'accessibility.skip_to_content' | t }}" href="{{ routes.root_url }}" class="footer_logo_wrap w-inline-block">
-          {%- if section.settings.logo != blank -%}
-            <img
-              src="{{ section.settings.logo | image_url: width: 220 }}"
-              alt="{{ shop.name }}"
-              loading="lazy"
-              width="220"
-              height="24"
-            >
-          {%- else -%}
-            <img src="{{ 'logo_zh.svg' | asset_url }}" loading="lazy" alt="{{ shop.name }}">
-          {%- endif -%}
+        <a aria-label="Go to the homepage" href="{{ routes.root_url }}" class="footer_logo_wrap w-inline-block">
+          <div data-wf--logo--variant="colored" class="logo_wrap u-max-width-full">
+            {%- if section.settings.logo != blank -%}
+              <img
+                src="{{ section.settings.logo | image_url: width: 220 }}"
+                alt="{{ shop.name }}"
+                loading="lazy"
+                width="220"
+                height="24"
+              >
+            {%- else -%}
+              <img src="{{ 'logo_zh.svg' | asset_url }}" loading="lazy" alt="{{ shop.name }}" class="logo_colored w-variant-81f4ac40-d700-f647-b171-c7aedf809e15">
+            {%- endif -%}
+          </div>
         </a>
 
         <div class="footer_social_wrap">
           <div role="list" class="footer_social_list">
-            {%- if settings.social_facebook_link != blank -%}
+            {%- if section.settings.facebook_link != blank -%}
               <div role="listitem" class="footer_social_item">
-                <a aria-label="Facebook" href="{{ settings.social_facebook_link }}" target="_blank" class="footer_social_link w-inline-block">
-                  <svg width="100%" viewbox="0 0 64 64" aria-hidden="true" class="u-svg">
-                    <path d="M34.1,47V33.3h4.6l0.7-5.3h-5.3v-3.4c0-1.5,0.4-2.6,2.6-2.6l2.8,0v-4.8c-0.5-0.1-2.2-0.2-4.1-0.2 c-4.1,0-6.9,2.5-6.9,7V28H24v5.3h4.6V47H34.1z" fill="currentColor"/>
-                  </svg>
-                </a>
+                <a aria-label="Facebook" href="{{ section.settings.facebook_link }}" target="_blank" class="footer_social_link w-inline-block"><svg width="100%" viewbox="0 0 64 64" aria-hidden="true" class="u-svg">
+                    <path fill="currentColor" d="M24.92437,62V36H16V24h8.92437v-8.38004C24.92437,6.49153,30.70333,2,38.84651,2 c3.90067,0,7.25309,0.29041,8.23008,0.42022v9.53975l-5.64773,0.00257C37.00014,11.96253,36,14.06699,36,17.15515V24h12l-4,12h-8v26 H24.92437z"></path>
+                  </svg></a>
               </div>
             {%- endif -%}
-
-            {%- if settings.social_twitter_link != blank -%}
+            {%- if section.settings.twitter_link != blank -%}
               <div role="listitem" class="footer_social_item">
-                <a aria-label="X" href="{{ settings.social_twitter_link }}" target="_blank" class="footer_social_link w-inline-block">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none" class="u-svg">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
-                  </svg>
-                </a>
+                <a aria-label="X" href="{{ section.settings.twitter_link }}" target="_blank" class="footer_social_link w-inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none" class="u-svg">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"></path>
+                  </svg></a>
               </div>
             {%- endif -%}
-
-            {%- if settings.social_youtube_link != blank -%}
+            {%- if section.settings.youtube_link != blank -%}
               <div role="listitem" class="footer_social_item">
-                <a aria-label="YouTube" href="{{ settings.social_youtube_link }}" target="_blank" class="footer_social_link w-inline-block">
-                  <svg width="100%" viewbox="0 0 48 48" aria-hidden="true" class="u-svg">
-                    <path d="M38.8,14.5c-0.4-1.4-1.5-2.5-2.9-2.9C33.4,11,24,11,24,11s-9.4,0-11.9,0.6c-1.4,0.4-2.5,1.5-2.9,2.9 C8.6,17,8.6,22.2,8.6,22.2s0,5.2,0.6,7.7c0.4,1.4,1.5,2.5,2.9,2.9c2.5,0.6,11.9,0.6,11.9,0.6s9.4,0,11.9-0.6 c1.4-0.4,2.5-1.5,2.9-2.9c0.6-2.5,0.6-7.7,0.6-7.7S39.4,17,38.8,14.5z M21.2,27V17.4l8,4.8L21.2,27z" fill="currentColor"/>
-                  </svg>
-                </a>
+                <a aria-label="YouTube" href="{{ section.settings.youtube_link }}" target="_blank" class="footer_social_link w-inline-block"><svg width="100%" viewbox="0 0 48 48" aria-hidden="true" class="u-svg">
+                    <path fill="currentColor" d="M47.5,14.4c0,0-0.5-3.3-1.9-4.8c-1.8-1.9-3.9-1.9-4.8-2C34.1,7.1,24,7.1,24,7.1h0c0,0-10.1,0-16.8,0.5 c-0.9,0.1-3,0.1-4.8,2c-1.4,1.5-1.9,4.8-1.9,4.8S0,18.3,0,22.2v3.6c0,3.9,0.5,7.8,0.5,7.8s0.5,3.3,1.9,4.8c1.8,1.9,4.2,1.9,5.3,2.1 c3.8,0.4,16.3,0.5,16.3,0.5s10.1,0,16.8-0.5c0.9-0.1,3-0.1,4.8-2c1.4-1.5,1.9-4.8,1.9-4.8s0.5-3.9,0.5-7.8v-3.6 C48,18.3,47.5,14.4,47.5,14.4z M19,30.2l0-13.5l13,6.8L19,30.2z"></path>
+                  </svg></a>
               </div>
             {%- endif -%}
-
-            {%- if settings.social_instagram_link != blank -%}
+            {%- if section.settings.instagram_link != blank -%}
               <div role="listitem" class="footer_social_item">
-                <a aria-label="Instagram" href="{{ settings.social_instagram_link }}" target="_blank" class="footer_social_link w-inline-block">
-                  <svg viewbox="0 0 56 56" width="100%" aria-hidden="true" class="u-svg">
-                    <path d="M28,12c-5.2,0-5.9,0-7.9,0.1c-2,0.1-3.4,0.4-4.6,0.9c-1.2,0.5-2.3,1.1-3.3,2.2c-1,1-1.7,2.1-2.2,3.3 c-0.5,1.2-0.8,2.6-0.9,4.6C9,25.1,9,25.8,9,31s0,5.9,0.1,7.9c0.1,2,0.4,3.4,0.9,4.6c0.5,1.2,1.1,2.3,2.2,3.3c1,1,2.1,1.7,3.3,2.2 c1.2,0.5,2.6,0.8,4.6,0.9c2,0.1,2.7,0.1,7.9,0.1s5.9,0,7.9-0.1c2-0.1,3.4-0.4,4.6-0.9c1.2-0.5,2.3-1.1,3.3-2.2c1-1,1.7-2.1,2.2-3.3 c0.5-1.2,0.8-2.6,0.9-4.6c0.1-2,0.1-2.7,0.1-7.9s0-5.9-0.1-7.9c-0.1-2-0.4-3.4-0.9-4.6c-0.5-1.2-1.1-2.3-2.2-3.3 c-1-1-2.1-1.7-3.3-2.2c-1.2-0.5-2.6-0.8-4.6-0.9C33.9,12,33.2,12,28,12z M28,15.5c5.1,0,5.7,0,7.7,0.1c1.9,0.1,2.9,0.4,3.5,0.7 c0.9,0.3,1.5,0.8,2.2,1.4c0.7,0.7,1.1,1.3,1.4,2.2c0.3,0.7,0.6,1.7,0.7,3.5c0.1,2,0.1,2.6,0.1,7.7s0,5.7-0.1,7.7 c-0.1,1.9-0.4,2.9-0.7,3.5c-0.3,0.9-0.8,1.5-1.4,2.2c-0.7,0.7-1.3,1.1-2.2,1.4c-0.7,0.3-1.7,0.6-3.5,0.7c-2,0.1-2.6,0.1-7.7,0.1 s-5.7,0-7.7-0.1c-1.9-0.1-2.9-0.4-3.5-0.7c-0.9-0.3-1.5-0.8-2.2-1.4c-0.7-0.7-1.1-1.3-1.4-2.2c-0.3-0.7-0.6-1.7-0.7-3.5 c-0.1-2-0.1-2.6-0.1-7.7s0-5.7,0.1-7.7c0.1-1.9,0.4-2.9,0.7-3.5c0.3-0.9,0.8-1.5,1.4-2.2c0.7-0.7,1.3-1.1,2.2-1.4 c0.7-0.3,1.7-0.6,3.5-0.7C22.3,15.5,22.9,15.5,28,15.5z M28,21.2c-5.4,0-9.8,4.4-9.8,9.8s4.4,9.8,9.8,9.8s9.8-4.4,9.8-9.8 S33.4,21.2,28,21.2z M28,37.3c-3.5,0-6.3-2.8-6.3-6.3s2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3S31.5,37.3,28,37.3z M40.5,20.8 c0,1.3-1,2.3-2.3,2.3s-2.3-1-2.3-2.3c0-1.3,1-2.3,2.3-2.3S40.5,19.5,40.5,20.8z" fill="currentColor"/>
-                  </svg>
-                </a>
+                <a aria-label="Instagram" href="{{ section.settings.instagram_link }}" target="_blank" class="footer_social_link w-inline-block"><svg viewbox="0 0 56 56" width="100%" aria-hidden="true" class="u-svg">
+                    <path d="M28,12c-5.2,0-5.9,0-7.9,0.1c-2,0.1-3.4,0.4-4.6,0.9c-1.2,0.5-2.3,1.1-3.3,2.2c-1,1-1.7,2.1-2.2,3.3 c-0.5,1.2-0.8,2.6-0.9,4.6C9,25.1,9,25.8,9,31s0,5.9,0.1,7.9c0.1,2,0.4,3.4,0.9,4.6c0.5,1.2,1.1,2.3,2.2,3.3c1,1,2.1,1.7,3.3,2.2 c1.2,0.5,2.6,0.8,4.6,0.9c2,0.1,2.7,0.1,7.9,0.1s5.9,0,7.9-0.1c2-0.1,3.4-0.4,4.6-0.9c1.2-0.5,2.3-1.1,3.3-2.2c1-1,1.7-2.1,2.2-3.3 c0.5-1.2,0.8-2.6,0.9-4.6c0.1-2,0.1-2.7,0.1-7.9s0-5.9-0.1-7.9c-0.1-2-0.4-3.4-0.9-4.6c-0.5-1.2-1.1-2.3-2.2-3.3 c-1-1-2.1-1.7-3.3-2.2c-1.2-0.5-2.6-0.8-4.6-0.9C33.9,12,33.2,12,28,12z" fill="currentColor"></path>
+                    <path d="M37.34,28c0,5.15-4.18,9.33-9.33,9.33h-.01c-5.15,0-9.33-4.18-9.33-9.33s4.18-9.33,9.33-9.33,9.34,4.18,9.34,9.33Z" fill="currentColor"></path>
+                  </svg></a>
               </div>
             {%- endif -%}
           </div>
         </div>
       </div>
 
-      <div class="footer_links_layout">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'menu' -%}
-              <section data-trigger="group" class="footer_group_wrap" {{ block.shopify_attributes }}>
-                <h3 class="footer_group_title u-text-style-h6 u-margin-bottom-text">{{ block.settings.title }}</h3>
-                <div role="list" class="footer_group_list">
-                  {%- for link in block.settings.menu.links -%}
-                    <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
-                      <a href="{{ link.url }}" class="footer_link_wrap w-inline-block">
-                        <div class="footer_link_text u-text-style-small">{{ link.title }}</div>
-                      </a>
-                    </div>
-                  {%- endfor -%}
-                </div>
-              </section>
-            {%- when 'contact' -%}
-              <section data-trigger="group" class="footer_group_wrap" {{ block.shopify_attributes }}>
-                <h3 class="footer_group_title u-text-style-h6 u-margin-bottom-text">{{ 'footer.contact_us' | t }}</h3>
-                <div role="list" class="footer_group_list">
-                  {%- if settings.contact_email != blank -%}
-                    <div role="listitem" class="footer_group_item">
-                      <div class="footer_contact_wrap">
-                        <div class="footer_link_text u-text-style-small">{{ settings.contact_email }}</div>
+      <div data-wf--grid--variant="default" class="u-grid-wrapper u-gap-row-7 u-column-span-7 u-column-start-6" data-number="12">
+        <div role="navigation" data-large-columns="3" data-medium-columns="0" data-small-columns="2" data-xsmall-columns="1" class="u-grid">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'menu' -%}
+                <section data-trigger="group" class="footer_group_wrap" {{ block.shopify_attributes }}>
+                  <h3 class="footer_group_title u-text-style-h6 u-margin-bottom-text">{{ block.settings.title }}</h3>
+                  <div role="list" class="footer_group_list">
+                    {%- for link in block.settings.menu.links -%}
+                      <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
+                        <a href="{{ link.url }}" class="footer_link_wrap w-inline-block">
+                          <div class="footer_link_text u-text-style-small">{{ link.title }}</div>
+                        </a>
                       </div>
-                    </div>
-                  {%- endif -%}
-                  {%- if settings.contact_phone != blank -%}
-                    <div role="listitem" class="footer_group_item">
-                      <div class="footer_contact_wrap">
-                        <div class="footer_link_text u-text-style-small">{{ settings.contact_phone }}</div>
+                    {%- endfor -%}
+                  </div>
+                </section>
+
+              {%- when 'contact' -%}
+                <section data-trigger="group" class="footer_group_wrap" {{ block.shopify_attributes }}>
+                  <h3 class="footer_group_title u-text-style-h6 u-margin-bottom-text">{{ block.settings.title | default: '聯絡我們' }}</h3>
+                  <div role="list" class="footer_group_list">
+                    {%- if block.settings.email != blank -%}
+                      <div role="listitem" class="footer_group_item">
+                        <div class="footer_contact_wrap">
+                          <div class="contact_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+                              <path d="M1.5 4.5V11C1.5 11.3978 1.65804 11.7794 1.93934 12.0607C2.22064 12.342 2.60218 12.5 3 12.5H13C13.3978 12.5 13.7794 12.342 14.0607 12.0607C14.342 11.7794 14.5 11.3978 14.5 11V4.5M1.5 4.5V4.318L6.9 8.446C7.21552 8.68754 7.60225 8.81839 8 8.81839C8.39775 8.81839 8.78448 8.68754 9.1 8.446L14.5 4.318V4.5M1.5 4.5C1.5 4.10218 1.65804 3.72064 1.93934 3.43934C2.22064 3.15804 2.60218 3 3 3H13C13.3978 3 13.7794 3.15804 14.0607 3.43934C14.342 3.72064 14.5 4.10218 14.5 4.5" class="u-path"></path>
+                            </svg></div>
+                          <div class="footer_link_text u-text-style-small">{{ block.settings.email }}</div>
+                        </div>
                       </div>
-                    </div>
-                  {%- endif -%}
-                  {%- if settings.address_taipei != blank -%}
-                    <div role="listitem" class="footer_group_item">
-                      <div class="footer_contact_wrap">
-                        <div class="footer_link_text u-text-style-small">{{ settings.address_taipei }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.phone != blank -%}
+                      <div role="listitem" class="footer_group_item">
+                        <div class="footer_contact_wrap">
+                          <div class="contact_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+                              <path d="M10.4003 9.68141C8.80368 11.3614 4.73101 7.32541 6.33368 5.63874C7.31235 4.60874 6.20701 3.43208 5.59501 2.56608C4.44635 0.942742 1.92568 3.18408 2.00168 4.61008C2.24368 9.10741 7.10835 14.4367 11.819 13.9714C13.2923 13.8261 14.9857 11.1647 13.2957 10.1921C12.4503 9.70541 11.2897 8.74541 10.4003 9.68074" class="u-path"></path>
+                            </svg></div>
+                          <div class="footer_link_text u-text-style-small">{{ block.settings.phone }}</div>
+                        </div>
                       </div>
-                    </div>
-                  {%- endif -%}
-                  {%- if settings.address_hsinchu != blank -%}
-                    <div role="listitem" class="footer_group_item">
-                      <div class="footer_contact_wrap">
-                        <div class="footer_link_text u-text-style-small">{{ settings.address_hsinchu }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.address1 != blank -%}
+                      <div role="listitem" class="footer_group_item">
+                        <div class="footer_contact_wrap">
+                          <div class="contact_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+                              <path d="M8.37319 13.88C8.26439 13.9581 8.13381 14.0002 7.99985 14.0002C7.8659 14.0002 7.73532 13.9581 7.62652 13.88C4.40719 11.5853 0.99052 6.86533 4.44452 3.45467C5.39275 2.5219 6.66974 1.99942 7.99985 2C9.33319 2 10.6125 2.52333 11.5552 3.454C15.0092 6.86467 11.5925 11.584 8.37319 13.88Z" class="u-path"></path>
+                              <path d="M7.99935 7.99967C8.35297 7.99967 8.69211 7.8592 8.94216 7.60915C9.19221 7.3591 9.33268 7.01996 9.33268 6.66634C9.33268 6.31272 9.19221 5.97358 8.94216 5.72353C8.69211 5.47348 8.35297 5.33301 7.99935 5.33301C7.64573 5.33301 7.30659 5.47348 7.05654 5.72353C6.80649 5.97358 6.66602 6.31272 6.66602 6.66634C6.66602 7.01996 6.80649 7.3591 7.05654 7.60915C7.30659 7.8592 7.64573 7.99967 7.99935 7.99967Z" class="u-path"></path>
+                            </svg></div>
+                          <div class="footer_link_text u-text-style-small">{{ block.settings.address1 }}</div>
+                        </div>
                       </div>
-                    </div>
-                  {%- endif -%}
-                  {%- if settings.company_tax_id != blank -%}
-                    <div role="listitem" class="footer_group_item">
-                      <div class="footer_contact_wrap">
-                        <div class="footer_link_text u-text-style-small">統一編號： {{ settings.company_tax_id }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.address2 != blank -%}
+                      <div role="listitem" class="footer_group_item">
+                        <div class="footer_contact_wrap">
+                          <div class="contact_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 19" fill="none" class="u-svg">
+                              <path d="M6.59626 4.33301V9.66634L4.15626 12.3097C3.53493 13.153 2.29293 14.4937 3.52426 15.391C3.90293 15.6663 4.60093 15.6663 5.9976 15.6663H10.0036C11.3996 15.6663 12.0976 15.6663 12.4763 15.391C13.7076 14.4937 12.4656 13.153 11.8436 12.3097L9.4036 9.66634V4.33301M9.4036 4.33301H6.59693H5.8936M9.4036 4.33301H10.1056" class="u-path"></path>
+                            </svg></div>
+                          <div class="footer_link_text u-text-style-small">{{ block.settings.address2 }}</div>
+                        </div>
                       </div>
-                    </div>
-                  {%- endif -%}
-                </div>
-              </section>
-          {%- endcase -%}
-        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if block.settings.tax_id != blank -%}
+                      <div role="listitem" class="footer_group_item">
+                        <div class="footer_contact_wrap">
+                          <div class="footer_link_text u-text-style-small">統一編號： {{ block.settings.tax_id }}</div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </section>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
       </div>
     </div>
   </div>
@@ -134,11 +142,18 @@
     <div class="footer_bottom_contain u-container">
       <div class="footer_payment_list">
         {%- if section.settings.show_payment_icons -%}
-          {%- for type in shop.enabled_payment_types -%}
-            <div class="footer_payment_icon">
-              {{ type | payment_type_svg_tag }}
-            </div>
-          {%- endfor -%}
+          <div class="footer_payment_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+              <path d="M22 9.5V7.2C22 6.0799 22 5.51984 21.782 5.09202C21.5903 4.71569 21.2843 4.40973 20.908 4.21799C20.4802 4 19.9201 4 18.8 4H5.2C4.0799 4 3.51984 4 3.09202 4.21799C2.71569 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.0799 2 7.2V9.5M22 9.5H2M22 9.5V16.8C22 17.9201 22 18.4802 21.782 18.908C21.5903 19.2843 21.2843 19.5903 20.908 19.782C20.4802 20 19.9201 20 18.8 20H5.2C4.0799 20 3.51984 20 3.09202 19.782C2.71569 19.5903 2.40973 19.2843 2.21799 18.908C2 18.4802 2 17.9201 2 16.8V9.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg></div>
+          <div class="footer_payment_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+              <path d="M6.5 14.5V9.5M17.5 9.5H13.5V12M17.5 9.5V14.5H13.5V12M17.5 9.5L14 12M10.5 9.5H9.5C8.94772 9.5 8.5 9.94772 8.5 10.5V13.5C8.5 14.0523 8.94772 14.5 9.5 14.5H10.5M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg></div>
+          <div class="footer_payment_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+              <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg></div>
+          <div class="footer_payment_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+              <path d="M12 17V17.5M12 14.5V14M15 14C15 15.1046 14.1046 16 13 16H11C9.89543 16 9 16.8954 9 18C9 19.1046 9.89543 20 11 20H13C14.1046 20 15 19.1046 15 18M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 11C12 10.4477 11.5523 10 11 10C10.4477 10 10 10.4477 10 11C10 11.5523 10.4477 12 11 12C11.5523 12 12 11.5523 12 11ZM15 11C15 10.4477 14.5523 10 14 10C13.4477 10 13 10.4477 13 11C13 11.5523 13.4477 12 14 12C14.5523 12 15 11.5523 15 11ZM18 11C18 10.4477 17.5523 10 17 10C16.4477 10 16 10.4477 16 11C16 11.5523 16.4477 12 17 12C17.5523 12 18 11.5523 18 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg></div>
         {%- endif -%}
       </div>
       <div class="footer_bottom_layout">
@@ -156,7 +171,7 @@
         <div class="footer_bottom_text u-text-style-small">
           <span>© </span>
           <span data-dynamic-year="">{{ 'now' | date: '%Y' }}</span>
-          <span> {{ section.settings.copyright_text | default: shop.name }} All Rights Reserved.</span>
+          <span> {{ section.settings.copyright_text | default: 'SD HEALTH' }} All Rights Reserved.</span>
         </div>
       </div>
     </div>
@@ -171,6 +186,34 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "header",
+      "content": "Social Links"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_link",
+      "label": "X (Twitter) URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_link",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Section"
     },
     {
       "type": "link_list",
@@ -213,7 +256,44 @@
       "type": "contact",
       "name": "Contact information",
       "limit": 1,
-      "settings": []
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "聯絡我們"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "service@sdhealth.tw"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "0800-779-088"
+        },
+        {
+          "type": "textarea",
+          "id": "address1",
+          "label": "Address 1",
+          "default": "台北市信義區東興路51-1號5樓"
+        },
+        {
+          "type": "textarea",
+          "id": "address2",
+          "label": "Address 2",
+          "default": "新竹科學園區新竹縣竹北市生醫五路66號4樓（第二生技大樓）"
+        },
+        {
+          "type": "text",
+          "id": "tax_id",
+          "label": "Tax ID",
+          "default": "60663013"
+        }
+      ]
     }
   ],
   "default": {
@@ -231,7 +311,15 @@
         }
       },
       {
-        "type": "contact"
+        "type": "contact",
+        "settings": {
+          "title": "聯絡我們",
+          "email": "service@sdhealth.tw",
+          "phone": "0800-779-088",
+          "address1": "台北市信義區東興路51-1號5樓",
+          "address2": "新竹科學園區新竹縣竹北市生醫五路66號4樓（第二生技大樓）",
+          "tax_id": "60663013"
+        }
       }
     ]
   }

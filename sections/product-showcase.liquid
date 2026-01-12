@@ -1,0 +1,205 @@
+{% comment %}
+  Product Showcase Section
+  Display product package with contents indicators
+{% endcomment %}
+
+<div id="product" class="u-section">
+  <div class="product_contian">
+    <div class="product_left u-theme-dark">
+      <div class="title_wrap">
+        <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+          <div class="u-eyebrow-layout">
+            <div class="u-eyebrow-marker"></div>
+            <div class="u-eyebrow-text u-text-style-main w-richtext">
+              <p>{{ section.settings.eyebrow | default: 'Our Product' }}</p>
+            </div>
+          </div>
+        </div>
+        <div data-number="25" data-wf--typography-heading--variant="h1" class="u-text w-variant-792802b6-ccdb-f982-5023-5fa970cf03d0 w-richtext">
+          <h2>{{ section.settings.heading | default: '立即訂購 READY GEN 完整檢測套裝，解鎖身體密碼' }}</h2>
+        </div>
+      </div>
+      <div class="product_img_group">
+        {%- if section.settings.product_gif != blank -%}
+          <img src="{{ section.settings.product_gif | image_url }}" loading="lazy" alt="{{ section.settings.heading }}">
+        {%- else -%}
+          <img src="{{ 'package_open_small.gif' | asset_url }}" loading="lazy" alt="{{ section.settings.heading }}">
+        {%- endif -%}
+      </div>
+      <div data-wf--button-full--variant="primary" class="button_full_wrap u-align-self-start" data-button=" " data-trigger="hover focus">
+        <div class="clickable_wrap u-cover-absolute">
+          <a target="" href="{{ section.settings.button_link | default: '/#buy' }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ section.settings.button_text | default: '立即選購' }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ section.settings.button_text | default: '立即選購' }}</span></button>
+        </div>
+        <div class="button_left_element">
+          <div class="button_main_text u-text-style-small">{{ section.settings.button_text | default: '立即選購' }}</div>
+          <div class="button_main_line"></div>
+        </div>
+        <div class="button_right_element">
+          <div class="button_right_icon is-animated"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none">
+              <path d="M9.61467 3.65805C9.52396 3.56134 9.39855 3.50463 9.26603 3.50038C9.13351 3.49613 9.00472 3.54469 8.908 3.63538V7.50005H3C2.86739 7.50005 2.74021 7.55272 2.64645 7.64649C2.55268 7.74026 2.5 7.86744 2.5 8.00005C2.5 8.13265 2.55268 8.25983 2.64645 8.3536C2.74021 8.44737 2.86739 8.50005 3 8.50005H8.908V12.3647C9.00472 12.4554 9.13351 12.504 9.26603 12.4997C9.39855 12.4955 9.52396 12.4387 9.61467 12.342L13.3647 8.34205C13.4516 8.24937 13.4999 8.12709 13.4999 8.00005C13.4999 7.873 13.4516 7.75072 13.3647 7.65805L9.61467 3.65805Z" fill="currentColor"></path>
+            </svg></div>
+          <div class="button_right_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none">
+              <path d="M9.61467 3.65805C9.52396 3.56134 9.39855 3.50463 9.26603 3.50038C9.13351 3.49613 9.00472 3.54469 8.908 3.63538V7.50005H3C2.86739 7.50005 2.74021 7.55272 2.64645 7.64649C2.55268 7.74026 2.5 7.86744 2.5 8.00005C2.5 8.13265 2.55268 8.25983 2.64645 8.3536C2.74021 8.44737 2.86739 8.50005 3 8.50005H8.908V12.3647C9.00472 12.4554 9.13351 12.504 9.26603 12.4997C9.39855 12.4955 9.52396 12.4387 9.61467 12.342L13.3647 8.34205C13.4516 8.24937 13.4999 8.12709 13.4999 8.00005C13.4999 7.873 13.4516 7.75072 13.3647 7.65805L9.61467 3.65805Z" fill="currentColor"></path>
+            </svg></div>
+        </div>
+      </div>
+    </div>
+    <div class="product_right u-theme-dark">
+      <div class="product_indicate_group">
+        <div class="product_note">
+          <div class="product_note_number">
+            <div class="u-text-style-h4">1</div>
+          </div>
+          <div class="u-text-style-h4">{{ section.settings.item1_title | default: '說明卡&物流袋' }}</div>
+        </div>
+        <div class="product_indicator is-first">
+          <div class="indicator_dot is-br"></div>
+        </div>
+        {%- if section.settings.product_image1 != blank -%}
+          <img
+            src="{{ section.settings.product_image1 | image_url: width: 1581 }}"
+            loading="lazy"
+            sizes="(max-width: 1581px) 100vw, 1581px"
+            srcset="{{ section.settings.product_image1 | image_url: width: 500 }} 500w, {{ section.settings.product_image1 | image_url: width: 800 }} 800w, {{ section.settings.product_image1 | image_url: width: 1080 }} 1080w, {{ section.settings.product_image1 | image_url: width: 1581 }} 1581w"
+            alt="{{ section.settings.item1_title }}"
+          >
+        {%- else -%}
+          <img src="{{ 'RD_包裝外盒_P-5_crop.webp' | asset_url }}" loading="lazy" alt="{{ section.settings.item1_title }}">
+        {%- endif -%}
+      </div>
+      <div class="product_indicate_group">
+        <div class="product_note u-align-self-end">
+          <div class="product_note_number">
+            <div class="u-text-style-h4">2</div>
+          </div>
+          <div class="u-text-style-h4">{{ section.settings.item2_title | default: '採集刷' }}</div>
+        </div>
+        {%- if section.settings.product_image2 != blank -%}
+          <img
+            src="{{ section.settings.product_image2 | image_url: width: 1581 }}"
+            loading="lazy"
+            sizes="(max-width: 1581px) 100vw, 1581px"
+            srcset="{{ section.settings.product_image2 | image_url: width: 500 }} 500w, {{ section.settings.product_image2 | image_url: width: 800 }} 800w, {{ section.settings.product_image2 | image_url: width: 1080 }} 1080w, {{ section.settings.product_image2 | image_url: width: 1581 }} 1581w"
+            alt="{{ section.settings.item2_title }}"
+          >
+        {%- else -%}
+          <img src="{{ 'RD_包裝外盒_P-6_crop.webp' | asset_url }}" loading="lazy" alt="{{ section.settings.item2_title }}">
+        {%- endif -%}
+        <div class="product_note">
+          <div class="product_note_number">
+            <div class="u-text-style-h4">4</div>
+          </div>
+          <div>
+            <div class="u-text-style-h4 u-margin-bottom-1">{{ section.settings.item4_title | default: '健康覺醒小物' }}</div>
+            <div class="u-text-style-small">{{ section.settings.item4_subtitle | default: '(每天，美一點，你猜到了嗎?)' }}</div>
+          </div>
+        </div>
+        <div class="product_note u-align-self-end">
+          <div class="product_note_number">
+            <div class="u-text-style-h4">3</div>
+          </div>
+          <div class="u-text-style-h4">{{ section.settings.item3_title | default: '試管(含保存液)' }}</div>
+        </div>
+        <div class="product_indicator is-second">
+          <div class="indicator_dot is-lr"></div>
+        </div>
+        <div class="product_indicator is-third">
+          <div class="indicator_dot is-rt"></div>
+        </div>
+        <div class="product_indicator is-fourth">
+          <div class="indicator_dot is-lt"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Our Product"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "立即訂購 READY GEN 完整檢測套裝，解鎖身體密碼"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_gif",
+      "label": "Product Animation (GIF)"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "立即選購"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/#buy"
+    },
+    {
+      "type": "header",
+      "content": "Product Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image1",
+      "label": "Product Image 1"
+    },
+    {
+      "type": "text",
+      "id": "item1_title",
+      "label": "Item 1 Title",
+      "default": "說明卡&物流袋"
+    },
+    {
+      "type": "header",
+      "content": "Product Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image2",
+      "label": "Product Image 2"
+    },
+    {
+      "type": "text",
+      "id": "item2_title",
+      "label": "Item 2 Title",
+      "default": "採集刷"
+    },
+    {
+      "type": "text",
+      "id": "item3_title",
+      "label": "Item 3 Title",
+      "default": "試管(含保存液)"
+    },
+    {
+      "type": "text",
+      "id": "item4_title",
+      "label": "Item 4 Title",
+      "default": "健康覺醒小物"
+    },
+    {
+      "type": "text",
+      "id": "item4_subtitle",
+      "label": "Item 4 Subtitle",
+      "default": "(每天，美一點，你猜到了嗎?)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Showcase"
+    }
+  ]
+}
+{% endschema %}

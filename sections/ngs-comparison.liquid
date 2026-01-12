@@ -1,0 +1,218 @@
+{% comment %}
+  NGS Comparison Table Section
+  Next-generation sequencing vs traditional gene testing
+{% endcomment %}
+
+<div class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap u-alignment-center">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'Accuracy' }}</p>
+          </div>
+        </div>
+      </div>
+      <div data-number="35" data-wf--typography-heading--variant="h1" class="u-text w-variant-792802b6-ccdb-f982-5023-5fa970cf03d0 w-richtext u-margin-bottom-0">
+        <h2>{{ section.settings.heading | default: '解析度約提升 50 倍的基因檢測技術(NGS)' }}</h2>
+      </div>
+    </div>
+    <div class="compare_table_wrap">
+      <table class="compare_table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <div class="u-text-style-h3 u-margin-bottom-3">{{ section.settings.col1_header | default: '次世代定序（NGS）' }}</div>
+              <div class="accuracy_pattern_wrap is-highlight">
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+              </div>
+            </th>
+            <th>
+              <div class="u-text-style-h3 u-margin-bottom-3">{{ section.settings.col2_header | default: '傳統基因分型技術' }}</div>
+              <div class="accuracy_pattern_wrap">
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar is-empty"></div>
+                <div class="accuracy_bar"></div>
+                <div class="accuracy_bar is-empty"></div>
+                <div class="accuracy_bar"></div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'row' -%}
+                <tr {{ block.shopify_attributes }}>
+                  <th>
+                    <div class="u-text-style-h6">{{ block.settings.row_label }}</div>
+                  </th>
+                  <td>
+                    <div class="table_item">
+                      {%- if block.settings.ngs_is_heading -%}
+                        <h4 class="u-text-style-h1 u-weight-bold">{{ block.settings.ngs_value }}</h4>
+                      {%- else -%}
+                        <div class="compare_icon is-checked"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none">
+                            <path d="M2 9.626L3.606 11.348C4.492 12.298 4.935 12.772 5.431 12.922C5.867 13.053 6.331 13.018 6.746 12.822C7.219 12.598 7.598 12.061 8.358 10.986L14 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg></div>
+                        <div class="u-text-style-main">{{ block.settings.ngs_value }}</div>
+                      {%- endif -%}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table_item">
+                      {%- if block.settings.traditional_is_heading -%}
+                        <h4 class="u-text-style-h1 u-weight-bold">{{ block.settings.traditional_value }}</h4>
+                      {%- else -%}
+                        <div class="compare_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 24 24" fill="none">
+                            <path d="M5.73204 20.5C3.44204 20.5 2.00904 18.002 3.15104 16L9.41904 5.006C10.563 2.998 13.437 2.998 14.582 5.006L20.849 16C21.991 18.002 20.558 20.5 18.268 20.5H5.73204Z" stroke="currentColor" stroke-width="1.5"></path>
+                          </svg></div>
+                        <div class="u-text-style-main">{{ block.settings.traditional_value }}</div>
+                      {%- endif -%}
+                    </div>
+                  </td>
+                </tr>
+            {%- endcase -%}
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="large" class="u-section-spacer w-variant-8cc18b30-4618-8767-0111-f6abfe45aaa3 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "NGS Comparison",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Accuracy"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "解析度約提升 50 倍的基因檢測技術(NGS)"
+    },
+    {
+      "type": "text",
+      "id": "col1_header",
+      "label": "Column 1 Header",
+      "default": "次世代定序（NGS）"
+    },
+    {
+      "type": "text",
+      "id": "col2_header",
+      "label": "Column 2 Header",
+      "default": "傳統基因分型技術"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "row_label",
+          "label": "Row Label",
+          "default": "數據點"
+        },
+        {
+          "type": "textarea",
+          "id": "ngs_value",
+          "label": "NGS Value",
+          "default": "數百~千萬級"
+        },
+        {
+          "type": "checkbox",
+          "id": "ngs_is_heading",
+          "label": "Display as heading",
+          "default": false
+        },
+        {
+          "type": "textarea",
+          "id": "traditional_value",
+          "label": "Traditional Value",
+          "default": "數十萬級"
+        },
+        {
+          "type": "checkbox",
+          "id": "traditional_is_heading",
+          "label": "Display as heading",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NGS Comparison",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "數據點",
+            "ngs_value": "數百~千萬級",
+            "ngs_is_heading": true,
+            "traditional_value": "數十萬級",
+            "traditional_is_heading": true
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "可讀取資料",
+            "ngs_value": "可讀取超過數百~千萬筆原始序列資料（深度更高、可發現新突變）",
+            "ngs_is_heading": false,
+            "traditional_value": "偵測固定約 60 萬個已知 SNP",
+            "traditional_is_heading": false
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "採樣數據量",
+            "ngs_value": ">1000 MB（資料越多、看得越細）",
+            "ngs_is_heading": false,
+            "traditional_value": "數十 MB",
+            "traditional_is_heading": false
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "row_label": "發現突變",
+            "ngs_value": "可以發現罕見或新突變",
+            "ngs_is_heading": false,
+            "traditional_value": "無法發現新突變",
+            "traditional_is_heading": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

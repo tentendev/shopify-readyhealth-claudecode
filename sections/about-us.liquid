@@ -1,0 +1,199 @@
+{% comment %}
+  About Us Section
+  Stats and company introduction
+{% endcomment %}
+
+<div id="about" class="u-section">
+  <div data-wf--spacer--variant="large" class="u-section-spacer w-variant-8cc18b30-4618-8767-0111-f6abfe45aaa3 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="about_layout u-grid-custom">
+      <div class="about_left">
+        <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+          <div class="u-eyebrow-layout">
+            <div class="u-eyebrow-marker"></div>
+            <div class="u-eyebrow-text u-text-style-main w-richtext">
+              <p>{{ section.settings.eyebrow | default: 'About us' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about_right u-column-span-3">
+        <div data-number="30" data-wf--typography-heading--variant="h1" class="u-text w-variant-792802b6-ccdb-f982-5023-5fa970cf03d0 w-richtext u-text-wrap-pretty u-margin-bottom-0">
+          <h2>{{ section.settings.heading | default: '工研院技轉 × 華聯精準檢測 × 世登健康行動，把基因科學轉化成你的健康覺醒！' }}</h2>
+        </div>
+        <div class="about_grid u-grid-autofit">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'stat' -%}
+                <div data-wf--card-fact--variant="{{ block.settings.variant | default: 'base' }}" class="fact_card{% if block.settings.variant == 'sub-green' %} w-variant-2cd1211f-4639-a383-7668-6736e10a75de{% elsif block.settings.variant == 'brand' %} w-variant-87832a64-0f97-bab0-9d66-fac17a5f8d38{% endif %}" {{ block.shopify_attributes }}>
+                  <div class="fact_icon">
+                    {%- case block.settings.icon -%}
+                      {%- when 'precision' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M16 23C17.8565 23 19.637 22.2625 20.9497 20.9497C22.2625 19.637 23 17.8565 23 16C23 14.1435 22.2625 12.363 20.9497 11.0503C19.637 9.7375 17.8565 9 16 9C14.1435 9 12.363 9.7375 11.0503 11.0503C9.7375 12.363 9 14.1435 9 16C9 17.8565 9.7375 19.637 11.0503 20.9497C12.363 22.2625 14.1435 23 16 23Z" class="u-path"></path>
+                          <path d="M16 18C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16C18 15.4696 17.7893 14.9609 17.4142 14.5858C17.0391 14.2107 16.5304 14 16 14C15.4696 14 14.9609 14.2107 14.5858 14.5858C14.2107 14.9609 14 15.4696 14 16C14 16.5304 14.2107 17.0391 14.5858 17.4142C14.9609 17.7893 15.4696 18 16 18Z" class="u-path"></path>
+                          <path d="M28 16C28 17.5759 27.6896 19.1363 27.0866 20.5922C26.4835 22.0481 25.5996 23.371 24.4853 24.4853C23.371 25.5996 22.0481 26.4835 20.5922 27.0866C19.1363 27.6896 17.5759 28 16 28C14.4241 28 12.8637 27.6896 11.4078 27.0866C9.95189 26.4835 8.62902 25.5996 7.51472 24.4853C6.40042 23.371 5.5165 22.0481 4.91345 20.5922C4.31039 19.1363 4 17.5759 4 16C4 12.8174 5.26428 9.76516 7.51472 7.51472C9.76516 5.26428 12.8174 4 16 4C19.1826 4 22.2348 5.26428 24.4853 7.51472C26.7357 9.76516 28 12.8174 28 16Z" class="u-path"></path>
+                        </svg>
+                      {%- when 'experience' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M29.3337 11.3334V18M18.9563 4.6667C18.0326 4.22822 17.0229 4.00073 16.0003 4.00073C14.9778 4.00073 13.9681 4.22822 13.0443 4.6667L4.12299 8.84937C2.18166 9.7587 2.18166 12.908 4.12299 13.8174L13.043 18C13.9669 18.4387 14.9769 18.6663 15.9997 18.6663C17.0224 18.6663 18.0324 18.4387 18.9563 18L27.8777 13.8174C29.819 12.908 29.819 9.7587 27.8777 8.84937L18.9563 4.6667Z" class="u-path"></path>
+                          <path d="M6.66699 15.3334V22.1667C6.66699 26.0574 12.9257 28 16.0003 28C19.075 28 25.3337 26.0574 25.3337 22.1667V15.3334" class="u-path"></path>
+                        </svg>
+                      {%- when 'research' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M12.6377 4H9.66699C8.87134 4 8.10828 4.31607 7.54567 4.87868C6.98306 5.44129 6.66699 6.20435 6.66699 7V25C6.66699 25.7957 6.98306 26.5587 7.54567 27.1213C8.10828 27.6839 8.87134 28 9.66699 28H21.667C22.4626 28 23.2257 27.6839 23.7883 27.1213C24.3509 26.5587 24.667 25.7957 24.667 25V16M12.6377 4C14.295 4 15.667 5.34267 15.667 7V10C15.667 10.7956 15.9831 11.5587 16.5457 12.1213C17.1083 12.6839 17.8713 13 18.667 13H21.667C22.4626 13 23.2257 13.3161 23.7883 13.8787C24.3509 14.4413 24.667 15.2044 24.667 16M12.6377 4C17.5577 4 24.667 11.1467 24.667 16M12.0003 22H20.0003M12.0003 18H17.3337" class="u-path"></path>
+                        </svg>
+                      {%- when 'tests' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M28 28H12.5333C9.54667 28 8.05333 28 6.912 27.4187C5.90851 26.9073 5.09265 26.0915 4.58133 25.088C4 23.9467 4 22.4533 4 19.4667V4" class="u-path"></path>
+                          <path d="M20.333 8H23.333C23.8634 8 24.3721 8.21071 24.7472 8.58579C25.1223 8.96086 25.333 9.46957 25.333 10V11.3333C25.333 11.8638 25.1223 12.3725 24.7472 12.7475C24.3721 13.1226 23.8634 13.3333 23.333 13.3333H20.333M20.333 8V13.3333M20.333 8H11.333C10.8026 8 10.2939 8.21071 9.91879 8.58579C9.54372 8.96086 9.33301 9.46957 9.33301 10V11.3333C9.33301 11.8638 9.54372 12.3725 9.91879 12.7475C10.2939 13.1226 10.8026 13.3333 11.333 13.3333H20.333M14.6663 17.3333H11.333C10.8026 17.3333 10.2939 17.544 9.91879 17.9191C9.54372 18.2942 9.33301 18.8029 9.33301 19.3333V20.6667C9.33301 21.1971 9.54372 21.7058 9.91879 22.0809C10.2939 22.456 10.8026 22.6667 11.333 22.6667H14.6663M14.6663 17.3333H17.9997C18.5301 17.3333 19.0388 17.544 19.4139 17.9191C19.789 18.2942 19.9997 18.8029 19.9997 19.3333V20.6667C19.9997 21.1971 19.789 21.7058 19.4139 22.0809C19.0388 22.456 18.5301 22.6667 17.9997 22.6667H14.6663M14.6663 17.3333V22.6667" class="u-path"></path>
+                        </svg>
+                      {%- when 'ai' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M13.3333 16H18.6667M16 13.3333V18.6666M10.3333 4.66663C6.836 4.66663 4 7.67996 4 11.396C4 18.8333 16 27.3333 16 27.3333C16 27.3333 28 18.8333 28 11.396C28 6.79196 25.164 4.66663 21.6667 4.66663C19.1867 4.66663 17.04 6.18129 16 8.38663C14.96 6.18129 12.8133 4.66663 10.3333 4.66663Z" class="u-path"></path>
+                        </svg>
+                      {%- when 'price' -%}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 32 32" fill="none" class="u-svg">
+                          <path d="M22.6667 6.66667H16M16 6.66667H12.6667C11.429 6.66667 10.242 7.15833 9.36684 8.0335C8.49167 8.90867 8 10.0957 8 11.3333C8 12.571 8.49167 13.758 9.36684 14.6332C10.242 15.5083 11.429 16 12.6667 16H16M16 6.66667V4M16 6.66667V16M16 16H19.3333C19.9462 16 20.553 16.1207 21.1192 16.3552C21.6854 16.5898 22.1998 16.9335 22.6332 17.3668C23.0665 17.8002 23.4102 18.3146 23.6448 18.8808C23.8793 19.447 24 20.0538 24 20.6667C24 21.2795 23.8793 21.8863 23.6448 22.4525C23.4102 23.0187 23.0665 23.5332 22.6332 23.9665C22.1998 24.3998 21.6854 24.7436 21.1192 24.9781C20.553 25.2126 19.9462 25.3333 19.3333 25.3333H16M16 16V25.3333M16 25.3333H8M16 25.3333V28" class="u-path"></path>
+                        </svg>
+                    {%- endcase -%}
+                  </div>
+                  <div class="fact_content">
+                    <h1 class="u-text-style-h2">{{ block.settings.stat_value }}</h1>
+                    <p class="text-gray u-text-style-main">{{ block.settings.stat_description }}</p>
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "About us"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "工研院技轉 × 華聯精準檢測 × 世登健康行動，把基因科學轉化成你的健康覺醒！"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "precision", "label": "Precision (target)" },
+            { "value": "experience", "label": "Experience (graduation)" },
+            { "value": "research", "label": "Research (document)" },
+            { "value": "tests", "label": "Tests (chart)" },
+            { "value": "ai", "label": "AI (heart)" },
+            { "value": "price", "label": "Price (dollar)" }
+          ],
+          "default": "precision"
+        },
+        {
+          "type": "select",
+          "id": "variant",
+          "label": "Card Style",
+          "options": [
+            { "value": "base", "label": "Base" },
+            { "value": "sub-green", "label": "Sub Green" },
+            { "value": "brand", "label": "Brand" }
+          ],
+          "default": "base"
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat Value",
+          "default": "99.9% 精準度"
+        },
+        {
+          "type": "text",
+          "id": "stat_description",
+          "label": "Description",
+          "default": "臨床級基因定序分析"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "precision",
+            "variant": "base",
+            "stat_value": "99.9% 精準度",
+            "stat_description": "臨床級基因定序分析"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "experience",
+            "variant": "sub-green",
+            "stat_value": "20 年+經驗",
+            "stat_description": "基因學與精準醫療深耕累積"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "research",
+            "variant": "brand",
+            "stat_value": "376+ 研究文獻",
+            "stat_description": "國際科學資料庫實證支持"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "tests",
+            "variant": "brand",
+            "stat_value": "120+項檢測",
+            "stat_description": "全方位涵蓋健康、營養、代謝與健康風險指標"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "ai",
+            "variant": "base",
+            "stat_value": "AI×個人化健康",
+            "stat_description": "個人化演算法打造專屬健康建議"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "price",
+            "variant": "sub-green",
+            "stat_value": "最誠實的價格",
+            "stat_description": "來自工研院技轉，科研成果回饋大眾，健康基因檢測CP值最高"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

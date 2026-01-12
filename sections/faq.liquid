@@ -1,0 +1,189 @@
+{% comment %}
+  FAQ Accordion Section
+  Frequently asked questions with expandable answers
+{% endcomment %}
+
+<div id="faq" class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="about_layout u-grid-custom">
+      <div class="about_left">
+        <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+          <div class="u-eyebrow-layout">
+            <div class="u-eyebrow-marker"></div>
+            <div class="u-eyebrow-text u-text-style-main w-richtext">
+              <p>{{ section.settings.eyebrow | default: 'FAQ' }}</p>
+            </div>
+          </div>
+        </div>
+        <h2 class="u-text-style-h1 u-margin-bottom-4">{{ section.settings.heading | default: '有問題？ 這裡找答案' }}</h2>
+      </div>
+      <div class="about_right u-column-span-3">
+        <div data-close-previous="{{ section.settings.close_previous }}" data-close-on-second-click="true" data-open-on-hover="false" data-open-by-default="{{ section.settings.open_by_default }}" class="accordion_wrap">
+          <div class="u-embed-css w-embed">
+            <style>
+.wf-design-mode .accordion_content_wrap {
+	display: block;
+}
+</style>
+          </div>
+          <div data-slot="" role="list" class="accordion_list">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'faq_item' -%}
+                  <div data-state="" role="listitem" class="accordion_item" {{ block.shopify_attributes }}>
+                    <div class="accordion_component">
+                      <h3 class="accordion_toggle_heading"><button aria-expanded="false" class="accordion_toggle_button"><span class="accordion_toggle_text u-text-style-h3">{{ block.settings.question }}</span><span class="accordion_toggle_icon"><svg data-wf--icon-arrow--direction="bottom" viewbox="0 0 66 70" fill="none" width="100%" height="100%" aria-hidden="true" class="u-svg w-variant-caa8b8e9-e8ec-6eb3-4526-30f19f7326f5">
+                              <path d="M17 2L50 34.9999L17 68" class="u-path"></path>
+                            </svg></span></button></h3>
+                      <div class="accordion_content_wrap">
+                        <div class="accordion_content_padding">
+                          <div class="accordion_content_text u-rich-text w-richtext">
+                            {{ block.settings.answer }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+          <div class="u-embed-js w-embed w-script">
+            <script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".accordion_wrap").forEach((component, listIndex) => {
+    if (component.dataset.scriptInitialized) return;
+    component.dataset.scriptInitialized = "true";
+    const closePrevious = component.getAttribute("data-close-previous") !== "false";
+    const closeOnSecondClick = component.getAttribute("data-close-on-second-click") !== "false";
+    const openOnHover = component.getAttribute("data-open-on-hover") === "true";
+    const openByDefault = component.getAttribute("data-open-by-default") !== null && !isNaN(+component.getAttribute("data-open-by-default")) ? +component.getAttribute("data-open-by-default") : false;
+    const list = component.querySelector(".accordion_list");
+    const items = component.querySelectorAll(".accordion_item");
+    const assignOpenItem = (item) => {
+      if (closePrevious) {
+        items.forEach(item => {
+          item.setAttribute("data-state", "");
+          const btn = item.querySelector(".accordion_toggle_button");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+      }
+      item.setAttribute("data-state", "open");
+      const btn = item.querySelector(".accordion_toggle_button");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    };
+    const closeItem = (item) => {
+      item.setAttribute("data-state", "");
+      const btn = item.querySelector(".accordion_toggle_button");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    };
+    items.forEach((item, index) => {
+      const toggle = item.querySelector(".accordion_toggle_button");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        if (item.getAttribute("data-state") === "open") {
+          if (closeOnSecondClick) closeItem(item);
+        } else {
+          assignOpenItem(item);
+        }
+      });
+      if (openOnHover) {
+        item.addEventListener("mouseenter", () => assignOpenItem(item));
+      }
+      if (openByDefault !== false && index + 1 === openByDefault) {
+        assignOpenItem(item);
+      }
+    });
+  });
+});
+</script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "有問題？ 這裡找答案"
+    },
+    {
+      "type": "checkbox",
+      "id": "close_previous",
+      "label": "Close previous when opening new",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "open_by_default",
+      "label": "Open item by default (0 = none)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "口腔黏膜檢測結果準確嗎？"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>口腔黏膜細胞與身體其他部位細胞，染色體皆相同。基因檢測品質高低與準確程度，極大程度上取決於樣品品質，因此，煩請依照產品說明書上的步驟正確的採樣。</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "口腔黏膜檢測結果準確嗎？",
+            "answer": "<p>口腔黏膜細胞與身體其他部位細胞，染色體皆相同。基因檢測品質高低與準確程度，極大程度上取決於樣品品質，因此，煩請依照產品說明書上的步驟正確的採樣。</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "感冒、生理期、生病能採樣嗎？",
+            "answer": "<p>若使用口腔噴劑或口腔內藥劑，建議康復後再進行採檢。生理期不受此限，可安心採檢。</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "基因檢測結果顯示為中高風險以上一定會生病嗎？",
+            "answer": "<p>根據現行研究，基因與疾病有一定程度上的關聯性，但非所有疾病。疾病的發生不只存在於基因變異，更多的影響在於飲食、生活..........等因素影響。</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

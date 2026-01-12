@@ -1,47 +1,212 @@
 {% comment %}
   Hero Section
-  Placeholder section for hero content
+  Full-width hero with background slider and CTA buttons
 {% endcomment %}
 
 <section class="hero_section u-section u-theme-dark">
+  <div data-wf--hero-slider--variant="overflow-visible" class="hero_slider slider_wrap" data-slider="component">
+    <div class="u-embed-css w-embed">
+      <style>
+html .slider_list > :not(.u-display-contents, .w-dyn-list),
+.slider_list > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > *,
+.slider_list > .u-display-contents > .u-display-contents > *,
+.slider_list > .u-display-contents > .w-dyn-list > * > * > *,
+.slider_list > .u-display-contents > .u-display-contents > .w-dyn-list > * > * > * {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count));
+}
+</style>
+    </div>
+    <div style="--lg: 1; --md: 1; --sm: 1; --xs: 1;" class="slider_offset">
+      <div data-delay="{{ section.settings.autoplay_delay }}" data-follow-finger="true" data-free-mode="false" data-mousewheel="true" data-slide-to-clicked="false" data-speed="{{ section.settings.transition_speed }}" data-autoplay="{{ section.settings.autoplay }}" class="slider_element swiper">
+        <div data-slot="" class="slider_list swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'slide' -%}
+                <div class="hero_slide_wrap u-image-wrapper" {{ block.shopify_attributes }}>
+                  {%- if block.settings.image != blank -%}
+                    <img
+                      src="{{ block.settings.image | image_url: width: 2400 }}"
+                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                      alt="{{ block.settings.image.alt | default: section.settings.heading }}"
+                      sizes="100vw"
+                      srcset="{{ block.settings.image | image_url: width: 500 }} 500w, {{ block.settings.image | image_url: width: 800 }} 800w, {{ block.settings.image | image_url: width: 1080 }} 1080w, {{ block.settings.image | image_url: width: 1600 }} 1600w, {{ block.settings.image | image_url: width: 2000 }} 2000w, {{ block.settings.image | image_url: width: 2400 }} 2400w"
+                      class="u-image"
+                    >
+                  {%- else -%}
+                    <img src="{{ block.settings.image_filename | asset_url }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" alt="{{ section.settings.heading }}" class="u-image">
+                  {%- endif -%}
+                  <div data-wf--media-overlay--variant="hero" class="u-overlay w-variant-979a844a-a3ae-2c06-b660-3556a5867040" data-number="70"></div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+    <div class="u-embed-js w-embed w-script">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+      <script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll("[data-slider='component']:not([data-slider='component'] [data-slider='component'])")
+    .forEach((component) => {
+      if (component.dataset.scriptInitialized) return;
+      component.dataset.scriptInitialized = "true";
+      const swiperElement = component.querySelector(".slider_element");
+      const swiperWrapper = component.querySelector(".slider_list");
+      if (!swiperElement || !swiperWrapper) return;
+      function flattenDisplayContents(slot) {
+        if (!slot) return;
+        let child = slot.firstElementChild;
+        while (child && child.classList.contains("u-display-contents")) {
+          while (child.firstChild) slot.insertBefore(child.firstChild, child);
+          slot.removeChild(child);
+          child = slot.firstElementChild;
+        }
+      }
+      flattenDisplayContents(swiperWrapper);
+      function removeCMSList(slot) {
+        const dynList = Array.from(slot.children).find((child) => child.classList.contains("w-dyn-list"));
+        if (!dynList) return;
+        const nestedItems = dynList?.querySelector(".w-dyn-items")?.children;
+        if (!nestedItems) return;
+        const staticWrapper = [...slot.children];
+        [...nestedItems].forEach((el) => {
+          const c = [...el.children].find((c) => !c.classList.contains("w-condition-invisible"));
+          c && slot.appendChild(c);
+        });
+        staticWrapper.forEach((el) => el.remove());
+      }
+      removeCMSList(swiperWrapper);
+      [...swiperWrapper.children].forEach((el) => el.classList.add("swiper-slide"));
+      const followFinger = swiperElement.getAttribute("data-follow-finger") === "true";
+      const freeMode = swiperElement.getAttribute("data-free-mode") === "true";
+      const mousewheel = swiperElement.getAttribute("data-mousewheel") === "true";
+      const slideToClickedSlide = swiperElement.getAttribute("data-slide-to-clicked") === "true";
+      const speed = +swiperElement.getAttribute("data-speed") || 600;
+      const autoplayOn = swiperElement.getAttribute("data-autoplay") === "true";
+      const delay = +swiperElement.getAttribute("data-delay") || 3000;
+      const swiper = new Swiper(swiperElement, {
+        slidesPerView: "auto",
+        followFinger,
+        freeMode,
+        slideToClickedSlide,
+        centeredSlides: false,
+        autoHeight: false,
+        speed,
+        loop: autoplayOn,
+        loopAdditionalSlides: autoplayOn ? 10 : 0,
+        autoplay: autoplayOn
+          ? {
+              delay,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: false,
+              waitForTransition: false,
+            }
+          : false,
+        mousewheel: {
+          enabled: mousewheel,
+          forceToAxis: true,
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        navigation: {
+          nextEl: component.querySelector("[data-slider='next'] button"),
+          prevEl: component.querySelector("[data-slider='previous'] button"),
+        },
+        pagination: {
+          el: component.querySelector(".slider_bullet_list"),
+          bulletActiveClass: "is-active",
+          bulletClass: "slider_bullet_item",
+          bulletElement: "button",
+          clickable: true,
+        },
+        slideActiveClass: "is-active",
+        slideDuplicateActiveClass: "is-active",
+        on: {
+          touchEnd(sw) {
+            if (sw.params.autoplay) sw.autoplay.start();
+          },
+          transitionEnd(sw) {
+            if (sw.params.autoplay && sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
+          },
+        },
+      });
+      if (autoplayOn) {
+        swiperElement.addEventListener("pointerup", () => swiper.autoplay && swiper.autoplay.start(), { passive: true });
+        swiperElement.addEventListener("mouseleave", () => swiper.autoplay && swiper.autoplay.start(), { passive: true });
+      }
+    });
+});
+</script>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
   <div class="hero_contain u-container">
-    <div class="hero_content">
-      {%- if section.settings.heading != blank -%}
-        <h1 class="hero_heading u-text-style-display">{{ section.settings.heading }}</h1>
-      {%- endif -%}
-
-      {%- if section.settings.subheading != blank -%}
-        <p class="hero_subheading u-text-style-large">{{ section.settings.subheading }}</p>
-      {%- endif -%}
-
-      {%- if section.settings.button_text != blank -%}
-        <div data-wf--button-main--variant="primary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
-          <div class="clickable_wrap u-cover-absolute">
-            <a href="{{ section.settings.button_link }}" class="clickable_link w-inline-block">
-              <span class="clickable_text u-sr-only">{{ section.settings.button_text }}</span>
-            </a>
+    <div data-wf--layout--variant="stack" class="u-layout-wrapper">
+      <div class="u-layout">
+        <div class="u-layout-column-1">
+          <div data-number="20" data-wf--typography-heading--variant="display" class="u-text w-variant-41c609dc-9c80-9eef-75df-03bf0eea00b4 w-richtext">
+            <p>{{ section.settings.heading }}</p>
           </div>
-          <div class="button_main_element">
-            <div aria-hidden="true" class="button_main_text u-text-style-small">{{ section.settings.button_text }}</div>
-            <div class="button_main_icon u-hide-if-empty"></div>
-            <div class="button_main_line"></div>
+          <div data-number="43" data-wf--typography-paragraph--variant="inherit" class="u-text u-rich-text w-richtext">
+            <p>{{ section.settings.subheading }}</p>
+          </div>
+          <div class="u-button-wrapper">
+            <div class="u-display-contents">
+              {%- if section.settings.primary_button_text != blank -%}
+                <div data-wf--button-main--variant="primary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
+                  <div class="clickable_wrap u-cover-absolute">
+                    <a target="" href="{{ section.settings.primary_button_link }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ section.settings.primary_button_text }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ section.settings.primary_button_text }}</span></button>
+                  </div>
+                  <div class="button_main_element">
+                    <div aria-hidden="true" class="button_main_text u-text-style-small">{{ section.settings.primary_button_text }}</div>
+                    <div class="button_main_icon u-hide-if-empty"></div>
+                    <div class="button_main_line"></div>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.secondary_button_prefix != blank -%}
+                <div data-wf--button-main-logo--variant="secondary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
+                  <div class="clickable_wrap u-cover-absolute">
+                    <a target="" href="{{ section.settings.secondary_button_link }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ section.settings.secondary_button_prefix }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ section.settings.secondary_button_prefix }}</span></button>
+                  </div>
+                  <div class="button_main_element w-variant-22fda977-a5da-0f7a-c204-8d50edd47823">
+                    <div class="button_main_logo u-text-style-small"><span>{{ section.settings.secondary_button_prefix }}</span><span class="button_logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 112 12" fill="none" class="u-svg">
+                          <g clip-path="url(#clip0_248_2686)">
+                            <path d="M76.8481 0.138489H78.6411V4.84802H84.4341V0.138489H86.2271V11.8655H84.4341V6.41895H78.6411V11.8655H76.8481V0.138489Z" fill="currentColor"></path>
+                            <path d="M88.3906 11.8655H97.4242V10.2948H90.2662V6.73394H96.4706V5.183H90.2662V1.70525H97.4242V0.138489H88.3906V11.8655Z" fill="currentColor"></path>
+                            <path d="M110.243 0.138489V8.81109H110.175L103.306 0.138489H101.363V11.8655H103.136V2.96737H103.203L110.227 11.8655H111.999V0.138489H110.243Z" fill="currentColor"></path>
+                            <path d="M13.8652 11.8655H22.8988V10.2948H15.7408V6.73394H21.9452V5.183H15.7408V1.70525H22.8988V0.138489H13.8652V11.8655Z" fill="currentColor"></path>
+                            <path d="M30.8001 0.138489L25.668 11.8655H27.5791L28.8928 8.8467H34.8915L36.1854 11.8655H38.2311L33.1188 0.138489H30.8001ZM29.5536 7.27993L31.8209 1.84373H32.0069L34.2386 7.27993H29.5497H29.5536Z" fill="currentColor"></path>
+                            <path d="M41.0884 11.8655H49.4531V10.2948H42.8814V0.138489H41.0884V11.8655Z" fill="currentColor"></path>
+                            <path d="M0 5.84772V11.8655H1.87557V5.84772" fill="currentColor"></path>
+                            <path d="M6.41914 11.8656H8.27969L4.1531 0.138535H1.87557V0.782269L6.41914 11.8656Z" fill="currentColor"></path>
+                            <path d="M9.49414 0.138535L5.36748 11.8656H7.22803L11.3547 0.138535H9.49414Z" fill="currentColor"></path>
+                            <path d="M59.1214 11.8655V7.46984L54.2109 0.138489H56.2567L60.0394 5.7646H60.1621L63.8935 0.138489H65.9392L60.9812 7.46984V11.8655H59.1254H59.1214Z" fill="currentColor"></path>
+                          </g>
+                          <defs>
+                            <clippath id="clip0_248_2686">
+                              <rect width="112" height="12" fill="currentColor"></rect>
+                            </clippath>
+                          </defs>
+                        </svg></span><span>{{ section.settings.secondary_button_suffix }}</span></div>
+                    <div class="button_main_line"></div>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
           </div>
         </div>
-      {%- endif -%}
-    </div>
-
-    {%- if section.settings.image != blank -%}
-      <div class="hero_image_wrap">
-        <img
-          src="{{ section.settings.image | image_url: width: 1920 }}"
-          alt="{{ section.settings.image.alt | default: section.settings.heading }}"
-          loading="eager"
-          class="hero_image"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.height }}"
-        >
+        <div class="u-layout-column-2"></div>
       </div>
-    {%- endif -%}
+    </div>
   </div>
 </section>
 
@@ -50,12 +215,11 @@
   "name": "Hero",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background image"
+      "type": "header",
+      "content": "Content"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
       "default": "從基因檢測出發，以AI科技引領你專屬健康之路"
@@ -64,23 +228,112 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "台灣新世代精準健康第一領導品牌"
+      "default": "台灣新世代精準健康第一領導品牌，運用全球領先 NGS ×AI，把基因數據轉化為健康生活行動"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
     },
     {
       "type": "text",
-      "id": "button_text",
+      "id": "primary_button_text",
       "label": "Button text",
       "default": "立即選購"
     },
     {
       "type": "url",
-      "id": "button_link",
-      "label": "Button link"
+      "id": "primary_button_link",
+      "label": "Button link",
+      "default": "/#buy"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button (Logo)"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_prefix",
+      "label": "Button prefix",
+      "default": "了解"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_suffix",
+      "label": "Button suffix",
+      "default": "基因技術"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Button link",
+      "default": "#tech"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay delay (ms)",
+      "min": 1000,
+      "max": 10000,
+      "step": 500,
+      "default": 3500
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition speed (ms)",
+      "min": 200,
+      "max": 1500,
+      "step": 100,
+      "default": 600
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., hero_slide01.webp",
+          "default": "hero_slide01.webp"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "hero_slide01.webp"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image_filename": "hero_slide02.webp"
+          }
+        }
+      ]
     }
   ]
 }

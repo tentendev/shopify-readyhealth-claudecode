@@ -1,0 +1,256 @@
+{% comment %}
+  Pricing Plans Section
+  Product purchase options and enterprise contact
+{% endcomment %}
+
+<div id="buy" class="u-section">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="plan_grid u-grid-custom">
+      <div class="title_wrap">
+        <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper">
+          <div class="u-eyebrow-layout">
+            <div class="u-eyebrow-marker"></div>
+            <div class="u-eyebrow-text u-text-style-main w-richtext">
+              <p>{{ section.settings.eyebrow | default: 'Choose Your Plan' }}</p>
+            </div>
+          </div>
+        </div>
+        <h2 class="u-text-style-h1 u-margin-bottom-4">{{ section.settings.heading | default: '立即檢測你的基因，獲得量身打造的AI個人化健康建議' }}</h2>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_card' -%}
+            <div data-trigger="hover focus" class="product_card" {{ block.shopify_attributes }}>
+              <div class="product_tbn">
+                {%- if block.settings.product_image != blank -%}
+                  <img
+                    src="{{ block.settings.product_image | image_url: width: 600 }}"
+                    loading="lazy"
+                    alt="{{ block.settings.title }}"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="{{ block.settings.product_image | image_url: width: 500 }} 500w, {{ block.settings.product_image | image_url: width: 600 }} 600w"
+                    class="product_img u-cover"
+                  >
+                {%- else -%}
+                  <img src="{{ block.settings.image_filename | asset_url }}" loading="lazy" alt="{{ block.settings.title }}" class="product_img u-cover">
+                {%- endif -%}
+              </div>
+              <div class="product_info_group">
+                <div class="product_info">
+                  <h4 class="u-text-style-h4">{{ block.settings.title }}</h4>
+                  <div class="product_price_group">
+                    <div class="u-text-style-main u-weight-medium">{{ block.settings.price }}</div>
+                  </div>
+                  <div class="button_main_wrap" data-button=" ">
+                    <div class="clickable_wrap u-cover-absolute">
+                      <a target="{{ block.settings.link_target }}" href="{{ block.settings.button_link }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ block.settings.button_text }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ block.settings.button_text }}</span></button>
+                    </div>
+                    <div class="button_main_element">
+                      <div aria-hidden="true" class="button_main_text u-text-style-small">{{ block.settings.button_text }}</div>
+                      <div class="button_main_icon"></div>
+                      <div class="button_main_line"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {%- when 'contact_card' -%}
+            <div class="plan_contact_item" {{ block.shopify_attributes }}>
+              <h4 class="u-text-style-h3">{{ block.settings.heading }}</h4>
+              <div class="product_tbn">
+                {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 600 }}"
+                    loading="lazy"
+                    sizes="100vw"
+                    srcset="{{ block.settings.image | image_url: width: 500 }} 500w, {{ block.settings.image | image_url: width: 600 }} 600w"
+                    alt="{{ block.settings.heading }}"
+                    class="product_img u-cover"
+                  >
+                {%- else -%}
+                  <img src="{{ block.settings.image_filename | asset_url }}" loading="lazy" alt="{{ block.settings.heading }}" class="product_img u-cover">
+                {%- endif -%}
+              </div>
+              <div class="u-button-wrapper u-flex-vertical-nowrap u-margin-top-0">
+                <div class="u-display-contents">
+                  {%- if block.settings.line_link != blank -%}
+                    <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
+                      <div class="clickable_wrap u-cover-absolute">
+                        <a target="_blank" href="{{ block.settings.line_link }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ block.settings.line_text }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ block.settings.line_text }}</span></button>
+                      </div>
+                      <div class="button_main_element w-variant-e85564cd-af30-a478-692b-71732aefb3ab">
+                        <div aria-hidden="true" class="button_main_text u-text-style-small">{{ block.settings.line_text }}</div>
+                        <div class="button_main_icon u-hide-if-empty"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+                            <path d="M9.61467 3.65805C9.52396 3.56134 9.39855 3.50463 9.26603 3.50038C9.13351 3.49613 9.00472 3.54469 8.908 3.63538V7.50005H3C2.86739 7.50005 2.74021 7.55272 2.64645 7.64649C2.55268 7.74026 2.5 7.86744 2.5 8.00005C2.5 8.13265 2.55268 8.25983 2.64645 8.3536C2.74021 8.44737 2.86739 8.50005 3 8.50005H8.908V12.3647C9.00472 12.4554 9.13351 12.504 9.26603 12.4997C9.39855 12.4955 9.52396 12.4387 9.61467 12.342L13.3647 8.34205C13.4516 8.24937 13.4999 8.12709 13.4999 8.00005C13.4999 7.873 13.4516 7.75072 13.3647 7.65805L9.61467 3.65805Z" fill="currentColor"></path>
+                          </svg></div>
+                        <div class="button_main_line"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.email != blank -%}
+                    <div data-wf--button-main--variant="primary" class="button_main_wrap" data-button=" " data-trigger="hover focus">
+                      <div class="clickable_wrap u-cover-absolute">
+                        <a target="" href="mailto:{{ block.settings.email }}" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">{{ block.settings.email }}</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">{{ block.settings.email }}</span></button>
+                      </div>
+                      <div class="button_main_element">
+                        <div aria-hidden="true" class="button_main_text u-text-style-small">{{ block.settings.email }}</div>
+                        <div class="button_main_icon u-hide-if-empty"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 16 16" fill="none" class="u-svg">
+                            <path d="M9.61467 3.65805C9.52396 3.56134 9.39855 3.50463 9.26603 3.50038C9.13351 3.49613 9.00472 3.54469 8.908 3.63538V7.50005H3C2.86739 7.50005 2.74021 7.55272 2.64645 7.64649C2.55268 7.74026 2.5 7.86744 2.5 8.00005C2.5 8.13265 2.55268 8.25983 2.64645 8.3536C2.74021 8.44737 2.86739 8.50005 3 8.50005H8.908V12.3647C9.00472 12.4554 9.13351 12.504 9.26603 12.4997C9.39855 12.4955 9.52396 12.4387 9.61467 12.342L13.3647 8.34205C13.4516 8.24937 13.4999 8.12709 13.4999 8.00005C13.4999 7.873 13.4516 7.75072 13.3647 7.65805L9.61467 3.65805Z" fill="currentColor"></path>
+                          </svg></div>
+                        <div class="button_main_line"></div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Pricing Plans",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "立即檢測你的基因，獲得量身打造的AI個人化健康建議"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., single.webp",
+          "default": "single.webp"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title",
+          "default": "全面基因檢測單人套組"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "NT$8,800"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "立即購買"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "link_target",
+          "label": "Link Target",
+          "options": [
+            { "value": "", "label": "Same Window" },
+            { "value": "_blank", "label": "New Window" }
+          ],
+          "default": "_blank"
+        }
+      ]
+    },
+    {
+      "type": "contact_card",
+      "name": "Enterprise Contact",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading",
+          "default": "企業團購組請來信或加入LINE官方洽詢"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., plan-tbn.webp",
+          "default": "plan-tbn.webp"
+        },
+        {
+          "type": "text",
+          "id": "line_text",
+          "label": "LINE Button Text",
+          "default": "LINE官方帳號"
+        },
+        {
+          "type": "url",
+          "id": "line_link",
+          "label": "LINE Link",
+          "default": "https://lin.ee/655Dz4v"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email Address",
+          "default": "service@sdhealth.tw"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Plans",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "image_filename": "single.webp",
+            "title": "全面基因檢測單人套組",
+            "price": "NT$8,800",
+            "button_text": "立即購買",
+            "link_target": "_blank"
+          }
+        },
+        {
+          "type": "contact_card",
+          "settings": {
+            "heading": "企業團購組請來信或加入LINE官方洽詢",
+            "image_filename": "plan-tbn.webp",
+            "line_text": "LINE官方帳號",
+            "email": "service@sdhealth.tw"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

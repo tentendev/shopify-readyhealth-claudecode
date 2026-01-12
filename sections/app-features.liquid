@@ -1,0 +1,204 @@
+{% comment %}
+  App Features Tabs Section
+  READY 1 app features with tabbed content
+{% endcomment %}
+
+<div class="u-section u-background-4">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="layout_contain u-container">
+    <div class="title_wrap u-alignment-center">
+      <div data-wf--typography-eyebrow--variant="base" class="u-eyebrow-wrapper u-background-1">
+        <div class="u-eyebrow-layout">
+          <div class="u-eyebrow-marker"></div>
+          <div class="u-eyebrow-text u-text-style-main w-richtext">
+            <p>{{ section.settings.eyebrow | default: 'REVIEW THE REPORT' }}</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="u-text-style-h1">
+        {%- if section.settings.show_logo -%}
+          <span class="ready1_head"><img src="{{ 'ready-1.svg' | asset_url }}" loading="lazy" alt="READY 1"></span>
+        {%- endif -%}
+        <span>{{ section.settings.heading | default: '全方位守護，伴您健康每一天' }}</span>
+      </h2>
+    </div>
+    <div data-pause-on-hover="false" data-loop-controls="false" data-tab-component-id="" data-slide-tabs="true" data-autoplay-duration="" data-duration="0.2" data-wf--tab--variant="base" class="tab_wrap">
+      <div class="u-embed-css w-embed">
+        <style>
+.tab_content_list[data-preview="false"] > :not(.w-dyn-list,.u-display-contents),
+.tab_content_list[data-preview="false"] > .w-dyn-list > * > * > *,
+.tab_content_list[data-preview="false"] > .u-display-contents > .w-dyn-list > * > * > *,
+.tab_content_list[data-preview="false"] > .u-display-contents > .u-display-contents > .w-dyn-list > * > * > *,
+.tab_content_list[data-preview="false"] > .u-display-contents > :not(.w-dyn-list,.u-display-contents),
+.tab_content_list[data-preview="false"] > .u-display-contents > .u-display-contents > :not(.w-dyn-list,.u-display-contents) {
+  display: none;
+}
+.tab_content_list > :first-child:not(.w-dyn-list,.u-display-contents),
+.tab_content_list > .w-dyn-list > * > :first-child > *,
+.tab_content_list > .u-display-contents > .w-dyn-list > * > :first-child > *,
+.tab_content_list > .u-display-contents > .u-display-contents > .w-dyn-list > * > :first-child > *,
+.tab_content_list > .u-display-contents > :not(.w-dyn-list,.u-display-contents):first-child,
+.tab_content_list > .u-display-contents > .u-display-contents > :not(.w-dyn-list,.u-display-contents):first-child {
+  display: block;
+}
+.tab_button_list:has([data-wf--tab-link--variant="link"]) { gap: 0rem; }
+@container (width > 50em) {
+  [data-wf--tab--variant="horizontal"] .tab_button_list { flex-direction: column; align-items: start; }
+}
+</style>
+      </div>
+      <div class="tab_left">
+        <div class="u-hide-if-empty u-margin-trim"></div>
+        <div data-slot="" role="tablist" class="tab_button_list">
+          {%- for block in section.blocks -%}
+            <button data-wf--tab-link--variant="button" data-tab-item-id="" class="tab_button_item w-variant-8ffc88d1-7ba2-15f6-9b67-306f6d86c1bd" {{ block.shopify_attributes }}><span class="tab_button_text u-text-style-small">{{ block.settings.tab_title }}</span><span class="tab_button_line w-variant-8ffc88d1-7ba2-15f6-9b67-306f6d86c1bd"></span></button>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="tab_right">
+        <div class="tab_content_wrap">
+          <div data-slot="" data-preview="false" class="tab_content_list">
+            {%- for block in section.blocks -%}
+              <div data-wf--layout--variant="columns-reversed" class="u-layout-wrapper" {{ block.shopify_attributes }}>
+                <div class="u-layout w-variant-1261a7e4-2c05-3b0b-2126-d399890906b8">
+                  <div class="u-layout-column-1 w-variant-1261a7e4-2c05-3b0b-2126-d399890906b8 u-alignment-start">
+                    <div data-number="20" data-wf--typography-heading--variant="h3" class="u-text w-variant-701c4b6c-37cf-de59-d80d-80a1822c4994 w-richtext">
+                      <h3>{{ block.settings.content_title }}</h3>
+                    </div>
+                    <div data-number="60" data-wf--typography-paragraph--variant="inherit" class="u-text u-rich-text w-richtext">
+                      {{ block.settings.content_text }}
+                    </div>
+                  </div>
+                  <div class="u-layout-column-2 w-variant-1261a7e4-2c05-3b0b-2126-d399890906b8 u-ratio-5-4">
+                    <div data-wf--visual-image--variant="wide-5-4" class="u-image-wrapper w-variant-8e41429f-9f9e-7697-357e-815bd3e59383 u-background-transparent u-object-fit-contain" style="">
+                      {%- if block.settings.image != blank -%}
+                        <img
+                          src="{{ block.settings.image | image_url: width: 1200 }}"
+                          loading="lazy"
+                          alt="{{ block.settings.content_title }}"
+                          sizes="(max-width: 1200px) 100vw, 1200px"
+                          srcset="{{ block.settings.image | image_url: width: 500 }} 500w, {{ block.settings.image | image_url: width: 800 }} 800w, {{ block.settings.image | image_url: width: 1200 }} 1200w"
+                          class="u-image"
+                        >
+                      {%- else -%}
+                        <img src="{{ block.settings.image_filename | asset_url }}" loading="lazy" alt="{{ block.settings.content_title }}" class="u-image">
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="report_pattern"><img src="{{ 'dna.svg' | asset_url }}" loading="lazy" alt="" class="report_pattern_img"></div>
+</div>
+
+{% schema %}
+{
+  "name": "App Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "REVIEW THE REPORT"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show READY 1 Logo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "全方位守護，伴您健康每一天"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Feature Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "深度基因報告解析"
+        },
+        {
+          "type": "text",
+          "id": "content_title",
+          "label": "Content Title",
+          "default": "深度基因報告解析"
+        },
+        {
+          "type": "richtext",
+          "id": "content_text",
+          "label": "Content Text",
+          "default": "<p>READY GEN 不只是基因檢測，而是透過 READY 1 獨家的運算邏輯，將複雜的基因數據轉化為你真正看得懂、用得上的健康指引。</p><p>從飲食代謝、運動傾向、肌膚狀況到睡眠特性，以淺顯易懂的方式，幫助你認識身體的先天設定，找到最適合你的健康方向。</p><p>這是一份屬於你的「健康使用說明書」。</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_filename",
+          "label": "Image filename (fallback)",
+          "info": "Use if no image is uploaded. E.g., app-gene.webp",
+          "default": "app-gene.webp"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "App Features",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "深度基因報告解析",
+            "content_title": "深度基因報告解析",
+            "content_text": "<p>READY GEN 不只是基因檢測，而是透過 READY 1 獨家的運算邏輯，將複雜的基因數據轉化為你真正看得懂、用得上的健康指引。</p><p>從飲食代謝、運動傾向、肌膚狀況到睡眠特性，以淺顯易懂的方式，幫助你認識身體的先天設定，找到最適合你的健康方向。</p><p>這是一份屬於你的「健康使用說明書」。</p>",
+            "image_filename": "app-gene.webp"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "每日健康提醒",
+            "content_title": "每日健康提醒",
+            "content_text": "<p>當您打開 READY 1，每天都能收到根據您基因特性所生成的健康提醒。結合天氣變化、節氣與日常飲食，提供貼近生活的健康小提示，讓每一個建議都不是制式內容，而是為你量身打造。</p><p>READY 1 不只是提醒，而是陪伴您落實健康的每一天。</p>",
+            "image_filename": "app-daily.webp"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "AI個人化健康管家",
+            "content_title": "AI個人化健康管家",
+            "content_text": "<p>基因決定你的起點，READY 1 則負責把這些資訊轉化成每天的實際行動。透過 AI 分析你的基因特性與使用行為，動態調整飲食、運動與生活建議，不只是靜態建議，而是會「跟著你改變」的健康系統。</p><p>你的健康，不再是一份報告，而是一個陪伴你 365 天、持續運作的健康管家。</p>",
+            "image_filename": "app-ai.webp"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "風格化檢測報告",
+            "content_title": "風格化檢測報告",
+            "content_text": "<p>市面上的基因檢測報告，頁數一大疊、設計死板、內容又悶，是不是看一眼就想收起來？READY GEN 打破這種印象。以時尚簡約的設計，把複雜的基因資訊變得一目了然、好讀好懂，不只告訴你檢測結果，更清楚標示你的健康風險、重點提醒與行動建議。</p><p>讓基因報告不再只是「看一次就放著」，而是成為專屬於你的健康指南書，陪你長期使用的精準工具。</p>",
+            "image_filename": "app-report.webp"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
