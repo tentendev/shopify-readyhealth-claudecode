@@ -1,0 +1,41 @@
+{% comment %}
+  Gift Card Template - uses .liquid format as required by Shopify
+{% endcomment %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>{{ 'gift_cards.issued.title' | t }} | {{ shop.name }}</title>
+
+  {{ 'normalize.css' | asset_url | stylesheet_tag }}
+  {{ 'components.css' | asset_url | stylesheet_tag }}
+  {{ 'sdhealth.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+  <style>
+    .gift-card {
+      min-height: 100vh;
+    }
+    .gift-card__number {
+      font-family: monospace;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      max-width: 400px;
+      text-align: center;
+    }
+    .gift-card__qr svg {
+      max-width: 150px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="template-gift-card">
+  <main role="main">
+    {% section 'gift-card' %}
+  </main>
+</body>
+</html>

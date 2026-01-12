@@ -1,0 +1,93 @@
+{% comment %}
+  Gift Card Section
+{% endcomment %}
+
+<div class="u-section u-theme-light gift-card">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="gift-card__content u-alignment-center">
+      <h1 class="u-text-style-h1 u-margin-bottom-4">{{ 'gift_cards.issued.title' | t }}</h1>
+      <p class="u-text-style-large u-margin-bottom-6">{{ 'gift_cards.issued.subtext' | t }}</p>
+
+      {%- if gift_card.enabled -%}
+        <div class="gift-card__image u-margin-bottom-6">
+          <img src="{{ 'gift-card/card.svg' | shopify_asset_url }}" alt="{{ 'gift_cards.issued.title' | t }}" width="400">
+        </div>
+
+        <div class="gift-card__price u-text-style-display u-margin-bottom-4">
+          {{ gift_card.initial_value | money }}
+          {%- if gift_card.balance != gift_card.initial_value -%}
+            <span class="u-text-style-main">
+              {{ 'gift_cards.issued.remaining_html' | t: balance: gift_card.balance | money }}
+            </span>
+          {%- endif -%}
+        </div>
+
+        <div class="gift-card__code u-margin-bottom-6">
+          <input
+            type="text"
+            class="form_input u-alignment-center gift-card__number"
+            value="{{ gift_card.code | format_code }}"
+            aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
+            readonly
+          >
+          <button class="button_main_wrap u-margin-top-2" id="CopyButton" data-button=" ">
+            <div class="button_main_element">
+              <div class="button_main_text u-text-style-small">{{ 'gift_cards.issued.copy_code' | t }}</div>
+            </div>
+          </button>
+        </div>
+
+        {%- if gift_card.pass_url -%}
+          <a href="{{ gift_card.pass_url }}" class="gift-card__apple-wallet u-margin-bottom-6">
+            <img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}" width="160">
+          </a>
+        {%- endif -%}
+
+        <div class="gift-card__qr u-margin-bottom-6">
+          {{ gift_card.qr_code }}
+        </div>
+
+        {%- if gift_card.expires_on -%}
+          <p class="u-text-style-main u-margin-bottom-4">
+            {{ 'gift_cards.issued.expiration_date' | t: expires_on: gift_card.expires_on | date: format: 'date' }}
+          </p>
+        {%- endif -%}
+
+        <a href="{{ shop.url }}" class="button_main_wrap" data-wf--button-main--variant="primary" data-button=" ">
+          <div class="button_main_element">
+            <div class="button_main_text u-text-style-small">{{ 'gift_cards.issued.shop_link' | t }}</div>
+            <div class="button_main_line"></div>
+          </div>
+        </a>
+
+        <a href="{{ gift_card.url }}?print=true" target="_blank" class="u-text-style-small u-margin-top-4">
+          {{ 'gift_cards.issued.print' | t }}
+        </a>
+      {%- else -%}
+        <p class="u-text-style-large">{{ 'gift_cards.issued.disabled' | t }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var copyButton = document.getElementById('CopyButton');
+    if (copyButton) {
+      copyButton.addEventListener('click', function() {
+        var input = document.querySelector('.gift-card__number');
+        input.select();
+        document.execCommand('copy');
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Gift Card",
+  "settings": []
+}
+{% endschema %}

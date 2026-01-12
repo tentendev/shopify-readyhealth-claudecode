@@ -1,0 +1,93 @@
+{% comment %}
+  Customer Order Section
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <h1 class="u-text-style-h1 u-margin-bottom-2">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    <p class="u-text-style-main u-margin-bottom-6">{{ order.created_at | date: format: 'date' }}</p>
+
+    <a href="{{ routes.account_url }}" class="u-text-style-small">{{ 'customer.account.return' | t }}</a>
+
+    <div class="order_details u-margin-top-6">
+      <div class="order_status u-margin-bottom-4">
+        <p class="u-text-style-main"><strong>{{ 'customer.orders.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+        <p class="u-text-style-main"><strong>{{ 'customer.orders.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+      </div>
+
+      <table class="order_items_table u-width-full u-margin-bottom-6">
+        <thead>
+          <tr>
+            <th class="u-text-style-small">{{ 'customer.order.product' | t }}</th>
+            <th class="u-text-style-small">{{ 'customer.order.sku' | t }}</th>
+            <th class="u-text-style-small">{{ 'customer.order.price' | t }}</th>
+            <th class="u-text-style-small">{{ 'customer.order.quantity' | t }}</th>
+            <th class="u-text-style-small">{{ 'customer.order.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td class="u-text-style-main">
+                {{ line_item.title }}
+                {%- if line_item.fulfillment -%}
+                  <span class="u-text-style-small">{{ 'customer.order.fulfilled_at' | t: date: line_item.fulfillment.created_at | date: format: 'date' }}</span>
+                {%- endif -%}
+              </td>
+              <td class="u-text-style-main">{{ line_item.sku }}</td>
+              <td class="u-text-style-main">{{ line_item.final_price | money }}</td>
+              <td class="u-text-style-main">{{ line_item.quantity }}</td>
+              <td class="u-text-style-main">{{ line_item.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="u-text-style-main">{{ 'customer.order.subtotal' | t }}</td>
+            <td class="u-text-style-main">{{ order.line_items_subtotal_price | money }}</td>
+          </tr>
+          {%- for discount in order.discounts -%}
+            <tr>
+              <td colspan="4" class="u-text-style-main">{{ discount.code }}</td>
+              <td class="u-text-style-main">-{{ discount.savings | money }}</td>
+            </tr>
+          {%- endfor -%}
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr>
+              <td colspan="4" class="u-text-style-main">{{ shipping_method.title }}</td>
+              <td class="u-text-style-main">{{ shipping_method.price | money }}</td>
+            </tr>
+          {%- endfor -%}
+          <tr>
+            <td colspan="4" class="u-text-style-main">{{ 'customer.order.tax' | t }}</td>
+            <td class="u-text-style-main">{{ order.tax_price | money }}</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="u-text-style-main u-weight-medium">{{ 'customer.order.total' | t }}</td>
+            <td class="u-text-style-main u-weight-medium">{{ order.total_price | money }}</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="order_addresses u-grid-custom">
+        <div class="billing_address">
+          <h3 class="u-text-style-h4 u-margin-bottom-2">{{ 'customer.order.billing_address' | t }}</h3>
+          <p class="u-text-style-main">{{ order.billing_address | format_address }}</p>
+        </div>
+        <div class="shipping_address">
+          <h3 class="u-text-style-h4 u-margin-bottom-2">{{ 'customer.order.shipping_address' | t }}</h3>
+          <p class="u-text-style-main">{{ order.shipping_address | format_address }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Order",
+  "settings": []
+}
+{% endschema %}

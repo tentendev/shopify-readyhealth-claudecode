@@ -1,0 +1,161 @@
+{% comment %}
+  Article Section
+  Display single blog article
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <article class="article">
+      <header class="article_header u-margin-bottom-6">
+        <h1 class="u-text-style-h1 u-margin-bottom-4">{{ article.title }}</h1>
+        <div class="article_meta u-text-style-small">
+          <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: format: 'date' }}
+          </time>
+          {%- if section.settings.show_author -%}
+            <span>{{ article.author }}</span>
+          {%- endif -%}
+        </div>
+      </header>
+
+      {%- if article.image and section.settings.show_image -%}
+        <div class="article_image u-margin-bottom-6">
+          <img
+            src="{{ article.image | image_url: width: 1200 }}"
+            alt="{{ article.title }}"
+            loading="eager"
+            class="u-cover"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="article_content u-rich-text w-richtext">
+        {{ article.content }}
+      </div>
+
+      {%- if article.tags.size > 0 and section.settings.show_tags -%}
+        <div class="article_tags u-margin-top-6">
+          <span class="u-text-style-small u-weight-medium">{{ 'blogs.article.tags' | t }}:</span>
+          {%- for tag in article.tags -%}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="u-text-style-small">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_share -%}
+        <div class="article_share u-margin-top-6">
+          <span class="u-text-style-small u-weight-medium">{{ 'blogs.article.share' | t }}:</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | absolute_url }}" target="_blank" rel="noopener" class="u-text-style-small">Facebook</a>
+          <a href="https://twitter.com/intent/tweet?url={{ article.url | absolute_url }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener" class="u-text-style-small">Twitter</a>
+        </div>
+      {%- endif -%}
+
+      {%- if blog.comments_enabled? and section.settings.show_comments -%}
+        <div class="article_comments u-margin-top-8">
+          <h3 class="u-text-style-h3 u-margin-bottom-4">{{ 'blogs.comments.title' | t }}</h3>
+
+          {%- if article.comments_count > 0 -%}
+            <div class="comments_list">
+              {%- for comment in article.comments -%}
+                <div class="comment u-margin-bottom-4">
+                  <div class="comment_meta u-text-style-small u-margin-bottom-2">
+                    <span class="u-weight-medium">{{ comment.author }}</span>
+                    <span>{{ comment.created_at | date: format: 'date' }}</span>
+                  </div>
+                  <div class="comment_content u-text-style-main">
+                    {{ comment.content }}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- form 'new_comment', article -%}
+            <div class="comment_form u-margin-top-6">
+              <div class="form_group u-margin-bottom-4">
+                <label for="CommentAuthor" class="u-text-style-small">{{ 'blogs.comments.name' | t }}</label>
+                <input type="text" name="comment[author]" id="CommentAuthor" class="form_input" required>
+              </div>
+              <div class="form_group u-margin-bottom-4">
+                <label for="CommentEmail" class="u-text-style-small">{{ 'blogs.comments.email' | t }}</label>
+                <input type="email" name="comment[email]" id="CommentEmail" class="form_input" required>
+              </div>
+              <div class="form_group u-margin-bottom-4">
+                <label for="CommentBody" class="u-text-style-small">{{ 'blogs.comments.message' | t }}</label>
+                <textarea name="comment[body]" id="CommentBody" class="form_textarea" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="button_main_wrap" data-wf--button-main--variant="primary" data-button=" ">
+                <div class="button_main_element">
+                  <div class="button_main_text u-text-style-small">{{ 'blogs.comments.post' | t }}</div>
+                  <div class="button_main_line"></div>
+                </div>
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </article>
+
+    {%- if section.settings.show_back_link -%}
+      <div class="u-margin-top-6">
+        <a href="{{ blog.url }}" class="button_main_wrap" data-button=" ">
+          <div class="button_main_element">
+            <div class="button_main_text u-text-style-small">{{ section.settings.back_text }}</div>
+          </div>
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments",
+      "label": "Show comments",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back_link",
+      "label": "Show back to blog link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "back_text",
+      "label": "Back link text",
+      "default": "返回部落格"
+    }
+  ]
+}
+{% endschema %}

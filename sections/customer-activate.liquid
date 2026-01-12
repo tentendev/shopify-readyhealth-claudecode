@@ -1,0 +1,62 @@
+{% comment %}
+  Customer Activate Account Section
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="customer_form u-max-width-medium u-margin-auto">
+      <h1 class="u-text-style-h1 u-margin-bottom-6 u-alignment-center">{{ 'customer.activate_account.title' | t }}</h1>
+      <p class="u-text-style-main u-margin-bottom-6 u-alignment-center">{{ 'customer.activate_account.subtext' | t }}</p>
+
+      {%- form 'activate_customer_password' -%}
+        {%- if form.errors -%}
+          <div class="form_error u-margin-bottom-4">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form_group u-margin-bottom-4">
+          <label for="Password" class="u-text-style-small">{{ 'customer.activate_account.password' | t }}</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="Password"
+            class="form_input"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <div class="form_group u-margin-bottom-4">
+          <label for="PasswordConfirmation" class="u-text-style-small">{{ 'customer.activate_account.password_confirm' | t }}</label>
+          <input
+            type="password"
+            name="customer[password_confirmation]"
+            id="PasswordConfirmation"
+            class="form_input"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="button_main_wrap u-width-full" data-wf--button-main--variant="primary" data-button=" ">
+          <div class="button_main_element">
+            <div class="button_main_text u-text-style-small">{{ 'customer.activate_account.submit' | t }}</div>
+            <div class="button_main_line"></div>
+          </div>
+        </button>
+
+        <a href="{{ routes.account_login_url }}" class="u-text-style-small u-margin-top-4 u-alignment-center">{{ 'customer.activate_account.cancel' | t }}</a>
+      {%- endform -%}
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Activate",
+  "settings": []
+}
+{% endschema %}

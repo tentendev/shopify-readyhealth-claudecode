@@ -1,0 +1,120 @@
+{% comment %}
+  Blog Section
+  Display blog articles
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="title_wrap u-margin-bottom-6">
+      <h1 class="u-text-style-h1">{{ blog.title }}</h1>
+      {%- if section.settings.show_description and blog.description != blank -%}
+        <div class="u-text-style-main u-margin-top-2">{{ blog.description }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if blog.articles.size > 0 -%}
+      <div class="blog_grid u-grid-autofit">
+        {%- for article in blog.articles -%}
+          <article class="blog_card" data-trigger="hover focus">
+            {%- if article.image -%}
+              <div class="blog_card_image">
+                <img
+                  src="{{ article.image | image_url: width: 600 }}"
+                  loading="lazy"
+                  alt="{{ article.title }}"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="{{ article.image | image_url: width: 300 }} 300w, {{ article.image | image_url: width: 500 }} 500w, {{ article.image | image_url: width: 600 }} 600w"
+                  class="blog_img u-cover"
+                >
+              </div>
+            {%- endif -%}
+            <div class="blog_card_content">
+              <div class="blog_meta u-text-style-small u-margin-bottom-2">
+                <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                  {{ article.published_at | date: format: 'date' }}
+                </time>
+                {%- if section.settings.show_author -%}
+                  <span>{{ article.author }}</span>
+                {%- endif -%}
+              </div>
+              <h2 class="u-text-style-h4 u-margin-bottom-2">{{ article.title }}</h2>
+              {%- if section.settings.show_excerpt and article.excerpt != blank -%}
+                <p class="u-text-style-main">{{ article.excerpt | strip_html | truncate: 150 }}</p>
+              {%- endif -%}
+              <div class="button_main_wrap u-margin-top-4" data-button=" ">
+                <div class="clickable_wrap u-cover-absolute">
+                  <a href="{{ article.url }}" class="clickable_link w-inline-block">
+                    <span class="clickable_text u-sr-only">{{ section.settings.read_more_text }}</span>
+                  </a>
+                </div>
+                <div class="button_main_element">
+                  <div aria-hidden="true" class="button_main_text u-text-style-small">{{ section.settings.read_more_text }}</div>
+                  <div class="button_main_line"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if blog.articles.size > section.settings.articles_per_page -%}
+        <div class="pagination u-margin-top-6 u-alignment-center">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="u-alignment-center">
+        <p class="u-text-style-large">{{ section.settings.empty_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show blog description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read more button text",
+      "default": "閱讀更多"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty blog text",
+      "default": "目前沒有文章"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+{% comment %}
+  Customer Addresses Section
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <h1 class="u-text-style-h1 u-margin-bottom-6">{{ 'customer.addresses.title' | t }}</h1>
+
+    <a href="{{ routes.account_url }}" class="u-text-style-small u-margin-bottom-6">{{ 'customer.account.return' | t }}</a>
+
+    <div class="customer_addresses_grid u-margin-top-6">
+      {%- for address in customer.addresses -%}
+        <div class="customer_address_card u-margin-bottom-4">
+          {%- if address == customer.default_address -%}
+            <span class="u-text-style-small u-weight-medium">{{ 'customer.addresses.default' | t }}</span>
+          {%- endif -%}
+          <p class="u-text-style-main">{{ address | format_address }}</p>
+          <div class="u-margin-top-2">
+            <a href="{{ address.url }}" class="u-text-style-small">{{ 'customer.addresses.edit' | t }}</a>
+            <a href="{{ address.url }}" class="u-text-style-small" data-confirm="{{ 'customer.addresses.delete_confirm' | t }}">{{ 'customer.addresses.delete' | t }}</a>
+          </div>
+        </div>
+      {%- endfor -%}
+
+      <div class="customer_address_new">
+        <a href="{{ routes.account_addresses_url }}/new" class="button_main_wrap" data-wf--button-main--variant="primary" data-button=" ">
+          <div class="button_main_element">
+            <div class="button_main_text u-text-style-small">{{ 'customer.addresses.add_new' | t }}</div>
+            <div class="button_main_line"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Addresses",
+  "settings": []
+}
+{% endschema %}

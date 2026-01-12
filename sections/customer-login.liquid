@@ -1,0 +1,129 @@
+{% comment %}
+  Customer Login Section
+{% endcomment %}
+
+<div class="u-section u-theme-light">
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+  <div class="u-container">
+    <div class="customer_form u-max-width-medium u-margin-auto">
+      <h1 class="u-text-style-h1 u-margin-bottom-6 u-alignment-center">{{ 'customer.login.title' | t }}</h1>
+
+      {%- form 'customer_login' -%}
+        {%- if form.errors -%}
+          <div class="form_error u-margin-bottom-4">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form_group u-margin-bottom-4">
+          <label for="CustomerEmail" class="u-text-style-small">{{ 'customer.login.email' | t }}</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            class="form_input"
+            autocomplete="email"
+            autocapitalize="off"
+            required
+          >
+        </div>
+
+        <div class="form_group u-margin-bottom-4">
+          <label for="CustomerPassword" class="u-text-style-small">{{ 'customer.login.password' | t }}</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="CustomerPassword"
+            class="form_input"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <div class="u-margin-bottom-4">
+          <a href="#recover" class="u-text-style-small" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+        </div>
+
+        <button type="submit" class="button_main_wrap u-width-full" data-wf--button-main--variant="primary" data-button=" ">
+          <div class="button_main_element">
+            <div class="button_main_text u-text-style-small">{{ 'customer.login.sign_in' | t }}</div>
+            <div class="button_main_line"></div>
+          </div>
+        </button>
+      {%- endform -%}
+
+      <div id="recover" class="customer_recover u-margin-top-6" style="display: none;">
+        <h2 class="u-text-style-h3 u-margin-bottom-4">{{ 'customer.recover_password.title' | t }}</h2>
+        {%- form 'recover_customer_password' -%}
+          {%- if form.errors -%}
+            <div class="form_error u-margin-bottom-4">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+          {%- if form.posted_successfully? -%}
+            <div class="form_success u-margin-bottom-4">
+              {{ 'customer.recover_password.success' | t }}
+            </div>
+          {%- endif -%}
+
+          <div class="form_group u-margin-bottom-4">
+            <label for="RecoverEmail" class="u-text-style-small">{{ 'customer.recover_password.email' | t }}</label>
+            <input
+              type="email"
+              name="email"
+              id="RecoverEmail"
+              class="form_input"
+              autocomplete="email"
+              autocapitalize="off"
+              required
+            >
+          </div>
+
+          <button type="submit" class="button_main_wrap" data-wf--button-main--variant="primary" data-button=" ">
+            <div class="button_main_element">
+              <div class="button_main_text u-text-style-small">{{ 'customer.recover_password.submit' | t }}</div>
+              <div class="button_main_line"></div>
+            </div>
+          </button>
+
+          <a href="#login" class="u-text-style-small u-margin-top-4" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
+        {%- endform -%}
+      </div>
+
+      <div class="u-alignment-center u-margin-top-6">
+        <p class="u-text-style-main">{{ 'customer.login.guest_title' | t }}</p>
+        <a href="{{ routes.account_register_url }}" class="u-text-style-main u-weight-medium">{{ 'customer.register.title' | t }}</a>
+      </div>
+    </div>
+  </div>
+  <div data-wf--spacer--variant="main" class="u-section-spacer w-variant-60a7ad7d-02b0-6682-95a5-2218e6fd1490 u-ignore-trim"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const recoverLink = document.getElementById('RecoverPassword');
+    const hideRecoverLink = document.getElementById('HideRecoverPasswordLink');
+    const recoverForm = document.getElementById('recover');
+
+    if (recoverLink && recoverForm) {
+      recoverLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        recoverForm.style.display = 'block';
+      });
+    }
+
+    if (hideRecoverLink && recoverForm) {
+      hideRecoverLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        recoverForm.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer Login",
+  "settings": []
+}
+{% endschema %}
